@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { 
-  FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaPinterestP, 
-  FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaSun, FaMoon 
-} from 'react-icons/fa';
+import { FaSun, FaMoon } from 'react-icons/fa';
+
+// --- IMPORT SEPARATE FOOTER HERE ---
+import Footer from '../components/Footer'; // Is path ko apne folder structure ke hisaab se check kar lein
 
 // GSAP & Smooth Scroll Imports
 import gsap from 'gsap';
@@ -16,89 +16,6 @@ import Lenis from '@studio-freight/lenis';
 import heroVid from '../assets/18069233-uhd_2160_3840_24fps.mp4'; 
 
 gsap.registerPlugin(ScrollTrigger);
-
-// --- FOOTER COMPONENT ---
-const Footer = () => {
-  const currentYear = new Date().getFullYear();
-  const footerLinks = [
-    { name: 'Our Portfolio', path: '/portfolio' },
-    { name: 'Our Offerings', path: '/services' },
-    { name: 'Why ZenVor', path: '/about' },
-    { name: 'Latest Blogs', path: '/blogs' },
-    { name: 'Reach Us', path: '/contact' },
-  ];
-
-  const socialIcons = [
-    { icon: <FaFacebookF />, link: '#', color: 'hover:bg-blue-600' },
-    { icon: <FaTwitter />, link: '#', color: 'hover:bg-sky-500' },
-    { icon: <FaLinkedinIn />, link: '#', color: 'hover:bg-blue-700' },
-    { icon: <FaInstagram />, link: '#', color: 'hover:bg-pink-600' },
-    { icon: <FaPinterestP />, link: '#', color: 'hover:bg-red-600' },
-  ];
-
-  return (
-    <footer className="relative bg-bg-main text-text-main pt-24 pb-12 overflow-hidden border-t border-border-main z-30 transition-colors duration-500">
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-accent/5 blur-[120px] rounded-full -z-0 pointer-events-none"></div>
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
-          <div className="space-y-8">
-            <div>
-               <h2 className="text-4xl font-black tracking-tighter italic">Zen<span className="text-accent">Vor</span></h2>
-               <p className="text-[10px] uppercase tracking-[0.3em] font-bold opacity-50 mt-1">Creators Of Tomorrow</p>
-            </div>
-            <p className="opacity-70 text-sm leading-relaxed text-justify">
-              <strong className="text-text-main">ZenVor</strong> is a global powerhouse in Software Engineering & Digital Marketing. We transform complex challenges into seamless digital experiences through innovation.
-            </p>
-          </div>
-          <div>
-            <h4 className="text-xl font-black uppercase mb-8 border-b-2 border-accent w-fit pb-2">Useful Links</h4>
-            <ul className="space-y-4">
-              {footerLinks.map((link, i) => (
-                <li key={i}>
-                  <Link to={link.path} className="opacity-60 hover:opacity-100 hover:text-accent transition-all duration-300 flex items-center gap-2 group">
-                    <span className="h-[1px] w-0 bg-accent group-hover:w-4 transition-all"></span>{link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-xl font-black uppercase mb-8 border-b-2 border-accent w-fit pb-2">Project Inquiries</h4>
-            <p className="opacity-60 text-sm mb-8 leading-relaxed italic">"Every vision deserves a bespoke roadmap. Let's craft something extraordinary together."</p>
-            <div className="space-y-4">
-              <button className="w-full py-4 bg-accent text-black font-black uppercase text-[10px] tracking-widest rounded-xl hover:scale-105 transition-transform">Technical Projects</button>
-              <button className="w-full py-4 bg-transparent border-2 border-accent text-accent font-black uppercase text-[10px] tracking-widest rounded-xl">Social Media Projects</button>
-            </div>
-          </div>
-          <div>
-            <h4 className="text-xl font-black uppercase mb-8 border-b-2 border-accent w-fit pb-2">Get In Touch</h4>
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="mt-1 text-accent"><FaMapMarkerAlt /></div>
-                <p className="opacity-70 text-sm">Office No. 06 (I G), H-61, Sector-63 Noida, UP 201301</p>
-              </div>
-              <div className="flex items-center gap-4"><div className="text-accent"><FaPhoneAlt /></div><p className="opacity-70 text-sm">+44 7399 729148</p></div>
-              <div className="flex items-center gap-4"><div className="text-accent"><FaEnvelope /></div><p className="opacity-70 text-sm uppercase tracking-tighter font-bold">hello@zenvor.com</p></div>
-            </div>
-          </div>
-        </div>
-        <div className="pt-12 border-t border-border-main flex flex-col md:flex-row gap-8 items-center justify-between opacity-50 text-[10px] font-bold uppercase tracking-widest">
-          <p>© {currentYear} <span className="text-text-main font-black">ZenVor</span> - All Rights Reserved.</p>
-          <div className="flex gap-4">
-            {socialIcons.map((soc, i) => (
-              <a key={i} href={soc.link} className={`w-10 h-10 rounded-full bg-text-main/5 flex items-center justify-center transition-all text-text-main ${soc.color} hover:text-white`}>{soc.icon}</a>
-            ))}
-          </div>
-          <div className="flex gap-8">
-            <Link to="/about" className="hover:text-accent transition-colors">About Us</Link>
-            <Link to="/privacy" className="hover:text-accent transition-colors">Privacy Policy</Link>
-            <Link to="/contact" className="hover:text-accent transition-colors">Contact Us</Link>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-};
 
 // --- MAIN HOME COMPONENT ---
 const fadeInUp = {
@@ -156,28 +73,12 @@ const Home = () => {
 
   const scrollDown = () => { heroRevealRef.current?.scrollIntoView({ behavior: 'smooth' }); };
 
-  // --- UPDATED CONTENT FROM SCREENSHOTS ---
+  // --- CONTENT ARRAYS ---
   const socialServices = [
-    { 
-      title: 'Facebook Services', 
-      icon: '📘', 
-      desc: 'Facebook is the most widely used Social Media platform in the world today. Whether you have to promote an Artist or a Company, a Local Business or a Brand, Facebook is the platform for you. With over 200 million monthly users in India, ZenVor helps you draft a marketing campaign to NAIL IT ON FACEBOOK.' 
-    },
-    { 
-      title: 'Twitter (X) Services', 
-      icon: '🐦', 
-      desc: 'Twitter is used by Brands to maintain their image and pinpoint specific communities or organizations. While it has a more refined audience than Facebook, it offers highly result-oriented engagement. ZenVor manages your active presence to grow your community and experience the power of Twitter.' 
-    },
-    { 
-      title: 'Instagram Marketing', 
-      icon: '📸', 
-      desc: 'Visual excellence with premium reels and stories that turn followers into brand advocates. We create high-impact aesthetic campaigns tailored for the modern consumer who values speed and visual storytelling.' 
-    },
-    { 
-      title: 'LinkedIn Professional', 
-      icon: '💼', 
-      desc: 'Establishing industry thought leadership and generating high-quality enterprise leads. The gold standard for B2B growth, ensuring your brand stands out as an authority in your specific niche.' 
-    }
+    { title: 'Facebook Services', icon: '📘', desc: 'Facebook is the most widely used Social Media platform in the world today. ZenVor helps you draft a marketing campaign to NAIL IT ON FACEBOOK.' },
+    { title: 'Twitter (X) Services', icon: '🐦', desc: 'Twitter is used by Brands to maintain their image and pinpoint specific communities or organizations. ZenVor manages your active presence.' },
+    { title: 'Instagram Marketing', icon: '📸', desc: 'Visual excellence with premium reels and stories that turn followers into brand advocates.' },
+    { title: 'LinkedIn Professional', icon: '💼', desc: 'Establishing industry thought leadership and generating high-quality enterprise leads.' }
   ];
 
   const clients = [
@@ -226,13 +127,6 @@ const Home = () => {
   return (
     <div ref={mainRef} className="relative w-full bg-bg-main text-text-main selection:bg-accent selection:text-black overflow-x-hidden transition-colors duration-500">
       
-      {/* <button 
-        onClick={() => setIsDarkMode(!isDarkMode)}
-        className="fixed top-8 right-8 z-[100] w-12 h-12 rounded-full bg-accent text-black flex items-center justify-center shadow-2xl hover:scale-110 transition-all active:scale-95"
-      >
-        {isDarkMode ? <FaSun size={20} /> : <FaMoon size={20} />}
-      </button> */}
-
       {/* GSAP CUSTOM CURSOR */}
       <div ref={cursorRef} className="fixed w-8 h-8 border border-accent rounded-full pointer-events-none z-[9999] hidden md:block -translate-x-1/2 -translate-y-1/2 mix-blend-difference"></div>
 
