@@ -39,7 +39,7 @@ const Footer = () => {
                <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-slate-500 mt-1">Creators Of Tomorrow</p>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed text-justify">
-              <strong className="text-white">ZenVor</strong> is a premium Software & Digital Marketing Company. We provide high-end website designing, mobile app development, e-commerce portals, and strategic social media services. We are committed to managing your brand value with innovation and support.
+              <strong className="text-white">ZenVor World</strong> is a premium Software & Digital Marketing Company. We provide high-end website designing, mobile app development, e-commerce portals, and strategic social media services. We are committed to managing your brand value with innovation and support.
             </p>
           </div>
 
@@ -65,10 +65,10 @@ const Footer = () => {
               "Each and every project is different for us. Please provide your details so we can come up with the best ideas."
             </p>
             <div className="space-y-4">
-              <button className="w-full py-4 bg-accent text-black font-black uppercase text-[10px] tracking-widest rounded-xl hover:scale-105 transition-transform shadow-lg shadow-accent/20">
+              <button className="w-full py-4 bg-accent text-black font-black uppercase text-[10px] tracking-widest rounded-xl hover:scale-105 transition-transform shadow-lg shadow-accent/20 bg-yellow-500">
                 Quote For Technical Projects
               </button>
-              <button className="w-full py-4 bg-transparent border-2 border-accent text-accent font-black uppercase text-[10px] tracking-widest rounded-xl hover:bg-accent hover:text-black transition-all">
+              <button className="w-full py-4 bg-transparent border-2 border-yellow-500 text-yellow-500 font-black uppercase text-[10px] tracking-widest rounded-xl hover:bg-yellow-500 hover:text-black transition-all">
                 Quote For Social Media Projects
               </button>
             </div>
@@ -79,18 +79,21 @@ const Footer = () => {
             <h4 className="text-xl font-black uppercase mb-8 border-b-2 border-accent w-fit pb-2">Get In Touch</h4>
             <div className="space-y-6">
               <div className="flex items-start gap-4 group">
-                <div className="mt-1 text-accent"><FaMapMarkerAlt /></div>
+                <div className="mt-1 text-accent text-yellow-500"><FaMapMarkerAlt /></div>
                 <p className="text-slate-400 text-sm group-hover:text-white transition-colors">
-                  Office No. 06 (I G), H-61, <br /> Sector-63 Noida, UP 201301
+                  J-506, J Tower, Royal Lake City,<br />
+                  Sanjan–Umbergaon Road,<br />
+                  Near Akra Maruti Lake, Umargam,<br />
+                  Valsad, Gujarat – 396170, India
                 </p>
               </div>
               <div className="flex items-center gap-4 group">
-                <div className="text-accent"><FaPhoneAlt /></div>
+                <div className="text-accent text-yellow-500"><FaPhoneAlt /></div>
                 <p className="text-slate-400 text-sm group-hover:text-white transition-colors">+44 7399 729148</p>
               </div>
               <div className="flex items-center gap-4 group">
-                <div className="text-accent"><FaEnvelope /></div>
-                <p className="text-slate-400 text-sm group-hover:text-white transition-colors uppercase tracking-tighter">hello@zenvor.com</p>
+                <div className="text-accent text-yellow-500"><FaEnvelope /></div>
+                <p className="text-slate-400 text-sm group-hover:text-white transition-colors uppercase tracking-tighter">support@zenvorworld.com</p>
               </div>
             </div>
           </div>
@@ -98,7 +101,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-12 border-t border-white/5 flex flex-col md:row gap-8 items-center justify-between">
+        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row gap-8 items-center justify-between">
           <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest">
             © {currentYear} <span className="text-white">ZenVor</span> - All Rights Reserved.
           </p>

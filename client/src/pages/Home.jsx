@@ -226,7 +226,6 @@ const Home = () => {
   return (
     <div ref={mainRef} className="relative w-full bg-bg-main text-text-main selection:bg-accent selection:text-black overflow-x-hidden transition-colors duration-500">
       
-      THEME TOGGLE BUTTON
       {/* <button 
         onClick={() => setIsDarkMode(!isDarkMode)}
         className="fixed top-8 right-8 z-[100] w-12 h-12 rounded-full bg-accent text-black flex items-center justify-center shadow-2xl hover:scale-110 transition-all active:scale-95"
