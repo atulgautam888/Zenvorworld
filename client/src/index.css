@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+/* 1. Theme Configuration */
+@theme {
+  --color-bg-main: var(--bg);
+  --color-text-main: var(--text);
+  --color-card-bg: var(--card);
+  --color-border-main: var(--border);
+  /* Brand Specific */
+  --color-accent: #FDCC17;       /* Primary Gold */
+  --color-accent-dark: #ecb203;  /* Darker Yellow */
+  --color-slate-grey: #414a4c;   /* Secondary Dark Grey */
+  --color-muted-grey: #888888;   /* Neutral Text */
+  
+  /* Status Colors */
+  --color-valid: #17D654;
+  --color-invalid: #BE4C54;
+}
+
+/* 2. Light Theme (Updated for maximum light visibility) */
+:root {
+  --bg: #FFFFFF;           /* Pure White for better visibility */
+  --text: #1A1A1A;         /* Primary Text */
+  --card: #F9FAFB;         /* Ultra Light Grey for subtle card contrast */
+  --border: rgba(65, 74, 76, 0.08); /* Even softer border */
+}
+
+/* 3. Dark Theme (Keeping for Toggle) */
+[data-theme="dark"] {
+  --bg: #030712;
+  --text: #F8FAFC;
+  --card: #0F172A;
+  --border: #1E293B;
+}
+
+@layer base {
+  body {
+    @apply bg-bg-main text-text-main transition-colors duration-500;
+    margin: 0;
+    padding: 0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  /* Hero Overlay Styling */
+  .hero-overlay {
+    background-color: rgba(253, 204, 22, 0.6); /* Your 0.6 Opacity Gold */
+    backdrop-filter: blur(4px);
+  }
+
+  /* Specific Card Gradients from your config */
+  .gradient-mint {
+    background: radial-gradient(#60efbc, #58d5c9);
+  }
+  .gradient-purple {
+    background: radial-gradient(#f588d8, #c0a3e5);
+  }
+}
+
+/* Custom Scrollbar - Matching your slate theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: #414a4c; /* Slate Grey Thumb */
+  border-radius: 10px;
+}
