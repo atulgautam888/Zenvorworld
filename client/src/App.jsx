@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Lenis from '@studio-freight/lenis';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
+import About from './pages/About'; 
+import WhyZenVor from './pages/WhyZenVor'; 
+import ReachUs from './pages/ReachUs'; 
 import './index.css';
 
 function App() {
@@ -26,10 +29,22 @@ function App() {
 
   return (
     <Router>
-      <div className="w-full min-h-screen bg-bg-main transition-colors duration-500">
+      <div className="w-full min-h-screen bg-bg-main text-text-main transition-colors duration-500">
+        {/* Navigation Bar - Stays constant on all pages */}
         <Navbar />
+        
         <Routes>
+          {/* Main Landing Page */}
           <Route path="/" element={<Home />} />
+
+          {/* About Us Page */}
+          <Route path="/about" element={<About />} />
+
+          {/* Why ZenVor World Page */}
+          <Route path="/why-zenvor" element={<WhyZenVor />} />
+
+          {/* Reach Us Page - Path matched with your Nav code ('/contact') */}
+          <Route path="/contact" element={<ReachUs />} />
         </Routes>
       </div>
     </Router>

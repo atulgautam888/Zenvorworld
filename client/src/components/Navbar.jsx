@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
   const location = useLocation();
 
   // Handle Scroll effect
@@ -26,7 +26,7 @@ const Navbar = () => {
   const navLinks = [
     { name: 'About Us', path: '/about' },
     { name: 'Our Offerings', path: '/services' },
-    { name: 'Why ZenVor', path: '/why-us' },
+    { name: 'Why ZenVor', path: '/why-zenvor' }, // Path fixed to match App.jsx
     { name: 'Portfolio', path: '/portfolio' },
     { name: 'Blogs', path: '/blog' },
     { name: 'Reach Us', path: '/contact' },
@@ -44,9 +44,9 @@ const Navbar = () => {
         {/* Logo Section - ZenVor */}
         <Link to="/" className="flex flex-col items-center group no-underline">
           <div className="flex items-baseline">
-            <span className={`${scrolled || theme === 'dark' ? 'text-text-main' : 'text-slate-900'} text-3xl font-black tracking-tighter transition-colors`}>ZEN</span>
+            <span className="text-text-main text-3xl font-black tracking-tighter transition-colors">ZEN</span>
             <span className="text-accent text-4xl font-black italic tracking-tighter ml-1">V</span>
-            <span className={`${scrolled || theme === 'dark' ? 'text-text-main' : 'text-slate-900'} text-3xl font-black tracking-tighter transition-colors`}>OR</span>
+            <span className="text-text-main text-3xl font-black tracking-tighter transition-colors">OR</span>
           </div>
           <p className="text-[9px] text-slate-400 uppercase tracking-[0.3em] font-bold -mt-1 group-hover:text-accent transition-colors">
             Creators of Tomorrow
@@ -56,7 +56,7 @@ const Navbar = () => {
         {/* Navigation Links */}
         <div className="hidden lg:flex items-center space-x-1">
           {/* Home Icon */}
-          <Link to="/" className="p-3 text-accent hover:bg-accent/10 rounded-full transition-all">
+          <Link to="/" className={`p-3 rounded-full transition-all ${location.pathname === '/' ? 'text-accent bg-accent/10' : 'text-text-main/70 hover:text-accent'}`}>
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
               <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
             </svg>
@@ -67,7 +67,7 @@ const Navbar = () => {
               key={link.name} 
               to={link.path} 
               className={`relative px-4 py-2 text-[12px] font-bold uppercase tracking-wider transition-all group no-underline
-                ${scrolled || theme === 'dark' ? 'text-text-main/80 hover:text-text-main' : 'text-slate-700 hover:text-slate-900'}`}
+                ${location.pathname === link.path ? 'text-accent' : 'text-text-main/80 hover:text-accent'}`}
             >
               {link.name}
               {/* Indicator */}
@@ -81,13 +81,13 @@ const Navbar = () => {
         <div className="flex items-center gap-4">
           <button 
             onClick={toggleTheme}
-            className="p-2.5 rounded-xl bg-card-bg border border-border-main shadow-sm hover:scale-110 active:scale-95 transition-all text-xl"
+            className="w-10 h-10 flex items-center justify-center rounded-xl bg-card-bg border border-border-main shadow-sm hover:scale-110 active:scale-95 transition-all text-xl"
             title="Toggle Mode"
           >
             {theme === 'light' ? '🌙' : '☀️'}
           </button>
 
-          <Link to="/contact" className="hidden sm:block bg-accent text-white px-6 py-2.5 rounded-xl font-black text-xs uppercase tracking-tighter hover:opacity-90 shadow-lg shadow-accent/20 transition-all">
+          <Link to="/contact" className="hidden sm:block bg-accent text-black px-6 py-2.5 rounded-xl font-black text-xs uppercase tracking-tighter hover:opacity-90 shadow-lg shadow-accent/20 transition-all no-underline">
             Get Quote
           </Link>
 
