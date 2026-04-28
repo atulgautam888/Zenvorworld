@@ -36,34 +36,6 @@ const WhyZenVor = () => {
     }
     requestAnimationFrame(raf);
 
-    const reveals = gsap.utils.toArray('.reveal');
-    reveals.forEach((el) => {
-      gsap.from(el, {
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: el,
-          start: "top 90%",
-        }
-      });
-    });
-
-    // Parallax effects
-    gsap.utils.toArray('.parallax').forEach((el) => {
-      gsap.to(el, {
-        yPercent: -15,
-        ease: "none",
-        scrollTrigger: {
-          trigger: el,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1
-        }
-      });
-    });
-
     // Metric counter animation
     const metricInterval = setInterval(() => {
       setActiveMetric(prev => (prev + 1) % 4);
@@ -71,7 +43,6 @@ const WhyZenVor = () => {
 
     return () => {
       lenis.destroy();
-      ScrollTrigger.getAll().forEach(t => t.kill());
       clearInterval(metricInterval);
     };
   }, []);
@@ -248,39 +219,12 @@ const WhyZenVor = () => {
     <div ref={containerRef} className="relative w-full bg-bg-main text-text-main overflow-x-hidden min-h-screen pt-20 transition-colors duration-500">
       
       {/* 1. ENHANCED HERO SECTION */}
-      <section className="relative min-h-[90vh] flex items-center justify-center border-b border-border-main overflow-hidden">
+      <section className="relative min-h-[70vh] flex items-center justify-center border-b border-border-main overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,_var(--color-accent)_0%,transparent_50%)] opacity-5" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,_var(--color-accent)_0%,transparent_50%)] opacity-5" />
-        
-        {/* Floating particles */}
-        <div className="absolute inset-0 overflow-hidden">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-accent/20 rounded-full"
-              initial={{ 
-                x: Math.random() * window.innerWidth, 
-                y: Math.random() * window.innerHeight 
-              }}
-              animate={{
-                y: [null, Math.random() * -100 - 50],
-                opacity: [0.2, 0.5, 0.2]
-              }}
-              transition={{
-                duration: Math.random() * 3 + 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-          ))}
-        </div>
 
         <div className="container mx-auto px-6 text-center relative z-10">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ duration: 1, ease: "easeOut" }}
-          >
+          <div>
             <motion.span 
               className="inline-block px-8 py-3 mb-8 text-[9px] font-black bg-accent text-black rounded-full uppercase tracking-[0.4em] shadow-lg"
               whileHover={{ scale: 1.05 }}
@@ -292,12 +236,6 @@ const WhyZenVor = () => {
               Where Innovation <br /> 
               <span className="text-accent relative">
                 Meets Excellence
-                <motion.div 
-                  className="absolute -bottom-2 left-0 w-full h-2 bg-accent/20"
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ delay: 0.5, duration: 0.8 }}
-                />
               </span>
             </h1>
             
@@ -324,18 +262,18 @@ const WhyZenVor = () => {
                 </motion.div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* 2. CORE VALUES */}
-      <section className="py-20 bg-bg-main border-b border-border-main">
+      <section className="py-12 bg-bg-main border-b border-border-main">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8">
             {coreValues.map((value, i) => (
               <motion.div
                 key={i}
-                className="text-center reveal"
+                className="text-center"
                 whileHover={{ y: -5 }}
               >
                 <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-accent/10 flex items-center justify-center text-2xl text-accent">
@@ -350,13 +288,9 @@ const WhyZenVor = () => {
       </section>
 
       {/* 3. ENHANCED WHAT SETS US APART */}
-      <section className="py-32 bg-bg-main">
-        <div className="container mx-auto px-6 text-center mb-20 reveal">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
+      <section className="py-16 bg-bg-main">
+        <div className="container mx-auto px-6 text-center mb-12">
+          <div>
             <span className="text-xs font-black uppercase tracking-widest text-accent mb-4 block">
               Our Superpowers
             </span>
@@ -364,19 +298,15 @@ const WhyZenVor = () => {
               What Sets Us <span className="text-accent">Apart</span>
             </h2>
             <div className="w-32 h-2 bg-accent mx-auto rounded-full" />
-          </motion.div>
+          </div>
         </div>
 
         <div className="container mx-auto px-6 grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {setsUsApart.map((item, i) => (
             <motion.div 
               key={i} 
-              className="group reveal"
+              className="group"
               whileHover={{ y: -10 }}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
             >
               <div className="relative h-full p-8 bg-card-bg border border-border-main rounded-[32px] shadow-lg hover:border-accent transition-all duration-500 overflow-hidden">
                 {/* Background glow effect */}
@@ -406,8 +336,8 @@ const WhyZenVor = () => {
       </section>
 
       {/* 4. OUR APPROACH */}
-      <section className="py-32 bg-card-bg/20 border-y border-border-main">
-        <div className="container mx-auto px-6 text-center mb-20 reveal">
+      <section className="py-16 bg-card-bg/20 border-y border-border-main">
+        <div className="container mx-auto px-6 text-center mb-12">
           <span className="text-xs font-black uppercase tracking-widest text-accent mb-4 block">
             Our Process
           </span>
@@ -425,13 +355,9 @@ const WhyZenVor = () => {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
             {ourApproach.map((phase, i) => (
-              <motion.div
+              <div
                 key={i}
-                className="reveal"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.15 }}
+                className=""
               >
                 <div className="relative h-full p-8 bg-bg-main border border-border-main rounded-[32px] hover:border-accent transition-all duration-500 shadow-lg group">
                   {/* Phase number */}
@@ -458,15 +384,15 @@ const WhyZenVor = () => {
                     ))}
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* 5. TECHNICAL ARCHITECTURE */}
-      <section className="py-32 bg-bg-main overflow-hidden">
-        <div className="container mx-auto px-6 text-center mb-20 reveal">
+      <section className="py-16 bg-bg-main overflow-hidden">
+        <div className="container mx-auto px-6 text-center mb-12">
           <span className="text-xs font-black uppercase tracking-widest text-accent mb-4 block">
             Technology Stack
           </span>
@@ -484,13 +410,9 @@ const WhyZenVor = () => {
             <div className="absolute top-1/2 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-accent/30 to-transparent -translate-y-1/2" />
             
             {marketingArchitecture.map((item, index) => (
-              <motion.div 
+              <div 
                 key={index} 
                 className="flex flex-col items-center flex-1 z-10"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
               >
                 <motion.div 
                   className="w-20 h-20 rounded-2xl bg-bg-main border-2 border-border-main text-accent flex items-center justify-center mb-4 shadow-xl backdrop-blur-sm hover:border-accent hover:scale-110 transition-all duration-500"
@@ -502,7 +424,7 @@ const WhyZenVor = () => {
                   Phase 0{index + 1}
                 </span>
                 <span className="text-sm font-bold uppercase tracking-tight">{item.stage}</span>
-              </motion.div>
+              </div>
             ))}
           </div>
 
@@ -514,10 +436,6 @@ const WhyZenVor = () => {
                   <motion.div 
                     key={catIdx} 
                     className="bg-card-bg p-6 rounded-[28px] border border-border-main hover:border-accent transition-all duration-500 shadow-md group"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: (idx * 0.1) + (catIdx * 0.05) }}
                     whileHover={{ y: -5 }}
                   >
                     <h5 className="text-[11px] font-black uppercase text-accent border-b border-border-main pb-3 mb-4 flex items-center gap-2">

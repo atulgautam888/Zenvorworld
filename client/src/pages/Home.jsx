@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { FaSun, FaMoon } from 'react-icons/fa';
 
 // --- IMPORT SEPARATE FOOTER HERE ---
-import Footer from '../components/Footer'; // Is path ko apne folder structure ke hisaab se check kar lein
+import Footer from '../components/Footer'; 
 
 // GSAP & Smooth Scroll Imports
 import gsap from 'gsap';
@@ -32,11 +32,12 @@ const Home = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
 
   const { scrollY, scrollYProgress } = useScroll();
-  const scale = useTransform(scrollYProgress, [0, 0.15], [1, 0.85]);
-  const overlayOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
-  const borderRadius = useTransform(scrollYProgress, [0, 0.15], [0, 80]);
+  
+  // Adjusted scale and borderRadius to feel more fluid
+  const scale = useTransform(scrollYProgress, [0, 0.1], [1, 0.9]);
+  const overlayOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
+  const borderRadius = useTransform(scrollYProgress, [0, 0.1], [0, 60]);
 
-  // FIX: CSS data-theme toggle
   useEffect(() => {
     const root = document.documentElement;
     if (isDarkMode) {
@@ -46,7 +47,6 @@ const Home = () => {
     }
   }, [isDarkMode]);
 
-  // SMOOTH SCROLL (LENIS)
   useEffect(() => {
     const lenis = new Lenis({ duration: 1.4, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
     function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
@@ -54,7 +54,6 @@ const Home = () => {
     return () => { lenis.destroy(); };
   }, []);
 
-  // GSAP CURSOR & SECTION ENTRANCE
   useGSAP(() => {
     const moveCursor = (e) => {
       gsap.to(cursorRef.current, { x: e.clientX, y: e.clientY, duration: 0.6, ease: "power3.out" });
@@ -73,7 +72,6 @@ const Home = () => {
 
   const scrollDown = () => { heroRevealRef.current?.scrollIntoView({ behavior: 'smooth' }); };
 
-  // --- CONTENT ARRAYS ---
   const socialServices = [
     { title: 'Facebook Services', icon: '📘', desc: 'Facebook is the most widely used Social Media platform in the world today. ZenVor helps you draft a marketing campaign to NAIL IT ON FACEBOOK.' },
     { title: 'Twitter (X) Services', icon: '🐦', desc: 'Twitter is used by Brands to maintain their image and pinpoint specific communities or organizations. ZenVor manages your active presence.' },
@@ -130,20 +128,31 @@ const Home = () => {
       {/* GSAP CUSTOM CURSOR */}
       <div ref={cursorRef} className="fixed w-8 h-8 border border-accent rounded-full pointer-events-none z-[9999] hidden md:block -translate-x-1/2 -translate-y-1/2 mix-blend-difference"></div>
 
-      {/* 1. STICKY VIDEO LAYER */}
+      {/* 1. STICKY VIDEO LAYER - UPDATED FOR TRUE EDGE-TO-EDGE */}
       <motion.section 
         style={{ scale, borderRadius }} 
-        className="sticky top-0 h-screen w-full z-20 bg-black flex items-center justify-center overflow-hidden"
+        className="sticky top-0 h-screen w-screen z-20 bg-black overflow-hidden left-0"
       >
-        <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-60">
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+          className="absolute top-0 left-0 w-full h-full object-cover opacity-60"
+        >
           <source src={heroVid} type="video/mp4" />
         </video>
 
-        <motion.div style={{ opacity: overlayOpacity }} className="text-center relative z-10 text-white">
-          <h1 className="text-[12vw] font-black tracking-tighter text-white/5 absolute inset-0 flex items-center justify-center uppercase select-none italic">ZenVor</h1>
-          <div className="relative flex flex-col items-center">
+        {/* Content Overlay */}
+        <motion.div 
+          style={{ opacity: overlayOpacity }} 
+          className="relative z-10 w-full h-full flex flex-col items-center justify-center text-white"
+        >
+          <h1 className="text-[15vw] font-black tracking-tighter text-white/5 absolute inset-0 flex items-center justify-center uppercase select-none italic pointer-events-none">ZenVor</h1>
+          
+          <div className="flex flex-col items-center">
             <div className="w-24 h-24 bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl flex items-center justify-center text-5xl mb-6 shadow-2xl rotate-3">🚀</div>
-            <h2 className="text-white text-2xl font-black uppercase tracking-[0.4em] drop-shadow-lg">Future-Ready Solutions</h2>
+            <h2 className="text-white text-2xl md:text-3xl font-black uppercase tracking-[0.4em] drop-shadow-lg text-center">Future-Ready Solutions</h2>
             <motion.div 
               onClick={scrollDown}
               animate={{ y: [0, 15, 0] }} 
