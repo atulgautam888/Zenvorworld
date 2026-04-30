@@ -110,6 +110,7 @@ ${name}
                     <option value="App Development" className="bg-bg-main">App Development</option>
                     <option value="AI Solutions" className="bg-bg-main">AI Solutions</option>
                     <option value="UI/UX Design" className="bg-bg-main">UI/UX Design</option>
+                    <option value="Digital Marketing" className="bg-bg-main">Digital Marketing</option>
                   </select>
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center text-accent">
                      <ExternalLink size={18} />

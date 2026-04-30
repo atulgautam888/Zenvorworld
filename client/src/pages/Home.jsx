@@ -29,14 +29,29 @@ const Home = () => {
   const mainRef = useRef(null);
   const cursorRef = useRef(null);
   const heroRevealRef = useRef(null); 
+  const videoRef = useRef(null); // Ref for the video element
   const [isDarkMode, setIsDarkMode] = useState(true);
 
   const { scrollY, scrollYProgress } = useScroll();
   
-  // Adjusted scale and borderRadius to feel more fluid
   const scale = useTransform(scrollYProgress, [0, 0.1], [1, 0.9]);
   const overlayOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
   const borderRadius = useTransform(scrollYProgress, [0, 0.1], [0, 60]);
+
+  // Infinite 10-second loop logic
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      const handleTimeUpdate = () => {
+        if (video.currentTime >= 10) {
+          video.currentTime = 0;
+          video.play();
+        }
+      };
+      video.addEventListener('timeupdate', handleTimeUpdate);
+      return () => video.removeEventListener('timeupdate', handleTimeUpdate);
+    }
+  }, []);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -73,10 +88,12 @@ const Home = () => {
   const scrollDown = () => { heroRevealRef.current?.scrollIntoView({ behavior: 'smooth' }); };
 
   const socialServices = [
-    { title: 'Facebook Services', icon: '📘', desc: 'Facebook is the most widely used Social Media platform in the world today. ZenVor helps you draft a marketing campaign to NAIL IT ON FACEBOOK.' },
-    { title: 'Twitter (X) Services', icon: '🐦', desc: 'Twitter is used by Brands to maintain their image and pinpoint specific communities or organizations. ZenVor manages your active presence.' },
-    { title: 'Instagram Marketing', icon: '📸', desc: 'Visual excellence with premium reels and stories that turn followers into brand advocates.' },
-    { title: 'LinkedIn Professional', icon: '💼', desc: 'Establishing industry thought leadership and generating high-quality enterprise leads.' }
+    { title: 'Facebook Advertising', icon: '📘', desc: 'ZenVor crafts data-driven advertising campaigns with precision targeting, A/B testing, and conversion optimization to maximize your ROI globally.' },
+    { title: 'Twitter (X) Marketing', icon: '🐦', desc: 'ZenVor develops comprehensive X marketing strategies including trending hashtag campaigns and influencer collaborations to build authentic connections.' },
+    { title: 'Instagram Growth', icon: '📸', desc: 'Visual storytelling meets performance marketing. Our strategies include high-converting reels and creative content that drives engagement rates through the roof.' },
+    { title: 'LinkedIn Lead Generation', icon: '💼', desc: 'B2B marketing excellence. We establish your thought leadership through strategic content marketing and executive branding to generate qualified global leads.' },
+    { title: 'YouTube Video Marketing', icon: '🎥', desc: 'Harness the power of video content. From SEO-optimized production to global Ad campaigns, we create compelling content that captures world-wide attention.' },
+    { title: 'Content Marketing Strategy', icon: '✍️', desc: 'Strategic content that builds authority and trust. Our data-driven approach ensures every piece resonates with your international target audience.' }
   ];
 
   const clients = [
@@ -88,13 +105,13 @@ const Home = () => {
     { name: 'Kyurion', icon: '🛡️', desc: 'Tech & Robotics.' }
   ];
 
-  const technologies = [
-    { name: '.NET', icon: '🌐', desc: 'High-security backend.' },
-    { name: 'Android', icon: '🤖', desc: 'Scalable mobile solutions.' },
-    { name: 'HTML/CSS', icon: '📄', desc: 'Modern structures.' },
-    { name: 'Angular', icon: '🅰️', desc: 'Robust architectures.' },
-    { name: 'Java', icon: '☕', desc: 'Enterprise software.' },
-    { name: 'PHP', icon: '🐘', desc: 'Agile scripting.' }
+  const achievements = [
+    { name: 'Innovation Award', icon: '🏆', desc: 'Best Digital Agency 2024', year: '2024' },
+    { name: 'Client Excellence', icon: '⭐', desc: '98% Satisfaction Rate', year: '2024' },
+    { name: 'Growth Leader', icon: '📈', desc: 'Global Tech Excellence', year: '2023' },
+    { name: 'Quality Certified', icon: '✅', desc: 'ISO 9001:2015', year: '2023' },
+    { name: 'Industry Pioneer', icon: '💡', desc: 'Digital Innovation Award', year: '2023' },
+    { name: 'Customer Trust', icon: '🤝', desc: 'Google Partner Certified', year: '2024' }
   ];
 
   const platforms = [
@@ -114,28 +131,27 @@ const Home = () => {
   ];
 
   const services = [
-    { title: 'Social Media Marketing', icon: '📱', desc: 'Building communities through data-driven campaigns and outreach.' },
-    { title: 'Software Development', icon: '⚙️', desc: 'Custom scalable solutions designed for internal business optimization.' },
-    { title: 'Web Development', icon: '💻', desc: 'Responsive websites built with clean code and high user retention.' },
-    { title: 'Mobile App Dev', icon: '📲', desc: 'Feature-rich Flutter applications offering seamless UX/UI experience.' },
-    { title: 'E-commerce Solutions', icon: '🛒', desc: 'Scaling digital retail through robust architectures and store designs.' },
-    { title: 'Brand Building', icon: '🎯', desc: 'Strategic brand positioning and identity design for modern startups.' }
+    { title: 'Digital Marketing', icon: '📱', desc: 'Comprehensive digital strategies including SEO, SEM, and influencer partnerships that drive measurable global results.' },
+    { title: 'Software Development', icon: '⚙️', desc: 'Custom enterprise-grade software solutions built with cutting-edge technologies and scalable architectures.' },
+    { title: 'Web Development', icon: '💻', desc: 'Responsive, lightning-fast websites built with modern frameworks and convert international visitors into customers.' },
+    { title: 'Mobile App Dev', icon: '📲', desc: 'Feature-rich native and cross-platform mobile applications that engage users and drive business growth globally.' },
+    { title: 'E-commerce Solutions', icon: '🛒', desc: 'Complete e-commerce ecosystems with secure payment gateways and analytics dashboards for global scaling.' },
+    { title: 'Brand Strategy', icon: '🎯', desc: 'End-to-end brand development that resonates with your target audience and stands out in the international market.' }
   ];
 
   return (
     <div ref={mainRef} className="relative w-full bg-bg-main text-text-main selection:bg-accent selection:text-black overflow-x-hidden transition-colors duration-500">
       
-      {/* GSAP CUSTOM CURSOR */}
       <div ref={cursorRef} className="fixed w-8 h-8 border border-accent rounded-full pointer-events-none z-[9999] hidden md:block -translate-x-1/2 -translate-y-1/2 mix-blend-difference"></div>
 
-      {/* 1. STICKY VIDEO LAYER - UPDATED FOR TRUE EDGE-TO-EDGE */}
+      {/* 1. STICKY VIDEO LAYER */}
       <motion.section 
         style={{ scale, borderRadius }} 
         className="sticky top-0 h-screen w-screen z-20 bg-black overflow-hidden left-0"
       >
         <video 
+          ref={videoRef}
           autoPlay 
-          loop 
           muted 
           playsInline 
           className="absolute top-0 left-0 w-full h-full object-cover opacity-60"
@@ -143,7 +159,6 @@ const Home = () => {
           <source src={heroVid} type="video/mp4" />
         </video>
 
-        {/* Content Overlay */}
         <motion.div 
           style={{ opacity: overlayOpacity }} 
           className="relative z-10 w-full h-full flex flex-col items-center justify-center text-white"
@@ -181,12 +196,19 @@ const Home = () => {
           </div>
         </section>
 
-        {/* 3. WHO WE ARE */}
-        <section className="py-24 border-t border-border-main">
+        {/* 3. WHO WE ARE - UPDATED GLOBAL CONTENT */}
+        <section className="py-32 border-t border-border-main">
           <div className="container mx-auto px-6 text-center">
-            <motion.div {...fadeInUp} className="max-w-5xl mx-auto bg-card-bg p-12 rounded-[40px] border border-border-main shadow-xl">
-              <h2 className="text-4xl font-black mb-8 uppercase text-text-main">Who We Are</h2>
-              <p className="text-lg md:text-xl opacity-60 leading-relaxed"><strong className="text-accent italic font-black">ZenVor</strong> is a one-stop solution for IT Services in India. Comprising expert developers and strategists, we deliver excellence through Quality and Innovation.</p>
+            <motion.div {...fadeInUp} className="max-w-5xl mx-auto bg-card-bg p-16 rounded-[60px] border border-border-main shadow-2xl relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-bl-[100px] group-hover:bg-accent/10 transition-colors"></div>
+              <h2 className="text-5xl font-black mb-10 uppercase text-text-main italic tracking-tighter">Who We Are</h2>
+              <p className="text-xl md:text-2xl opacity-70 leading-relaxed font-medium">
+                <span className="text-accent font-black">ZenVor Studio</span> is a premier global technology collective. We architect high-performance digital ecosystems for visionaries worldwide.
+              </p>
+              <div className="w-24 h-1.5 bg-accent mx-auto mt-10 rounded-full"></div>
+              <p className="mt-10 text-lg opacity-50 max-w-3xl mx-auto">
+                By blending cutting-edge engineering with strategic marketing, we transform ambitious startups and established enterprises into industry leaders. We don't just build software; we build the future.
+              </p>
             </motion.div>
           </div>
         </section>
@@ -210,12 +232,12 @@ const Home = () => {
           </div>
         </section>
 
-        {/* 5. DYNAMIC SOCIAL SERVICES */}
+        {/* 5. DYNAMIC DIGITAL MARKETING SERVICES */}
         <section className="relative py-40 border-y border-border-main">
           <div className="container mx-auto px-6 relative z-10 text-center">
             <motion.div {...fadeInUp} className="mb-24">
-              <h2 className="text-5xl md:text-7xl font-black uppercase italic tracking-tighter text-text-main">Dominate Social Media</h2>
-              <p className="text-accent font-bold tracking-[0.2em] uppercase mt-2">Platform Strategies</p>
+              <h2 className="text-5xl md:text-7xl font-black uppercase italic tracking-tighter text-text-main">Digital Marketing Excellence</h2>
+              <p className="text-accent font-bold tracking-[0.2em] uppercase mt-2">360° Marketing Solutions</p>
             </motion.div>
             <div className="grid md:grid-cols-2 gap-8 text-left">
               {socialServices.map((social, i) => (
@@ -223,7 +245,7 @@ const Home = () => {
                   <div className="text-7xl group-hover:scale-110 transition-transform duration-500 shrink-0">{social.icon}</div>
                   <div>
                     <div className="flex items-center gap-3 mb-4">
-                        <span className="text-accent text-xl font-bold italic">“</span>
+                        <span className="text-accent text-xl font-bold italic">"</span>
                         <h3 className="text-2xl font-black uppercase text-text-main italic">{social.title}</h3>
                     </div>
                     <p className="opacity-60 text-sm md:text-base leading-relaxed mb-6 font-medium text-justify">
@@ -253,16 +275,17 @@ const Home = () => {
           </div>
         </section>
 
-        {/* 7. TECH & PLATFORMS */}
+        {/* 7. ACHIEVEMENTS & PLATFORMS */}
         <section className="py-40 border-t border-border-main">
           <div className="container mx-auto px-6 grid md:grid-cols-2 gap-24 divide-x-0 md:divide-x divide-border-main">
             <div className="pr-0 md:pr-12">
-              <h3 className="text-4xl font-black mb-20 uppercase tracking-tighter text-text-main italic">Technologies</h3>
-              <div className="grid grid-cols-3 gap-10">
-                {technologies.map((t, i) => (
+              <h3 className="text-4xl font-black mb-20 uppercase tracking-tighter text-text-main italic">Awards & Recognition</h3>
+              <div className="grid grid-cols-2 gap-10">
+                {achievements.map((t, i) => (
                   <div key={i} className="text-center group">
-                    <div className="w-20 h-20 bg-card-bg border-2 border-border-main rounded-[24px] flex items-center justify-center text-4xl mb-6 mx-auto group-hover:border-accent group-hover:bg-text-main group-hover:text-bg-main transition-all">
+                    <div className="w-24 h-24 bg-card-bg border-2 border-border-main rounded-[24px] flex items-center justify-center text-4xl mb-6 mx-auto group-hover:border-accent group-hover:bg-text-main group-hover:text-bg-main transition-all relative">
                       {t.icon}
+                      <span className="absolute -top-2 -right-2 bg-accent text-black text-[8px] font-black px-2 py-0.5 rounded-full">{t.year}</span>
                     </div>
                     <h5 className="font-black text-xs uppercase text-text-main mb-2">{t.name}</h5>
                     <p className="text-[9px] opacity-50 font-bold leading-tight px-2">{t.desc}</p>

@@ -89,11 +89,11 @@ const Footer = () => {
               </div>
               <div className="flex items-center gap-4 group">
                 <div className="text-yellow-500"><FaPhoneAlt /></div>
-                <p className="text-slate-400 text-sm group-hover:text-white transition-colors">+44 7399 729148</p>
+                <p className="text-slate-400 text-sm group-hover:text-white transition-colors">+91 97656 25910</p>
               </div>
               <div className="flex items-center gap-4 group">
                 <div className="text-yellow-500"><FaEnvelope /></div>
-                <p className="text-slate-400 text-sm group-hover:text-white transition-colors uppercase tracking-tighter">HELLO@ZENVOR.COM</p>
+                <p className="text-slate-400 text-sm group-hover:text-white transition-colors uppercase tracking-tighter">support@zenvorworld.com</p>
               </div>
             </div>
           </div>
