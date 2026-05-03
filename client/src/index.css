@@ -6,6 +6,7 @@
   --color-text-main: var(--text);
   --color-card-bg: var(--card);
   --color-border-main: var(--border);
+  
   /* Brand Specific */
   --color-accent: #FDCC17;       /* Primary Gold */
   --color-accent-dark: #ecb203;  /* Darker Yellow */
@@ -17,15 +18,17 @@
   --color-invalid: #BE4C54;
 }
 
-/* 2. Light Theme (Updated for maximum light visibility) */
+/* 2. Light Theme - DEFAULT */
+/* Ise hamesha top par rakhen taaki browser ise sabse pehle load kare */
 :root {
-  --bg: #FFFFFF;           /* Pure White for better visibility */
-  --text: #1A1A1A;         /* Primary Text */
-  --card: #F9FAFB;         /* Ultra Light Grey for subtle card contrast */
-  --border: rgba(65, 74, 76, 0.08); /* Even softer border */
+  --bg: #FFFFFF;           /* Pure White */
+  --text: #1A1A1A;         /* Primary Dark Text */
+  --card: #F9FAFB;         /* Ultra Light Grey */
+  --border: rgba(65, 74, 76, 0.08); 
 }
 
-/* 3. Dark Theme (Keeping for Toggle) */
+/* 3. Dark Theme - TOGGLE ONLY */
+/* Jab html tag par [data-theme="dark"] hoga tabhi ye activate hoga */
 [data-theme="dark"] {
   --bg: #030712;
   --text: #F8FAFC;
@@ -43,27 +46,31 @@
 
   /* Hero Overlay Styling */
   .hero-overlay {
-    background-color: rgba(253, 204, 22, 0.6); /* Your 0.6 Opacity Gold */
+    background-color: rgba(253, 204, 22, 0.6); 
     backdrop-filter: blur(4px);
   }
 
-  /* Specific Card Gradients from your config */
+  /* Specific Card Gradients */
   .gradient-mint {
-    background: radial-gradient(#60efbc, #58d5c9);
+    background: radial-gradient(circle, #60efbc, #58d5c9);
   }
   .gradient-purple {
-    background: radial-gradient(#f588d8, #c0a3e5);
+    background: radial-gradient(circle, #f588d8, #c0a3e5);
   }
 }
 
-/* Custom Scrollbar - Matching your slate theme */
+/* Custom Scrollbar - Refined for both themes */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 ::-webkit-scrollbar-track {
   background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: #414a4c; /* Slate Grey Thumb */
-  border-radius: 10px;
+  background: #414a4c; 
+  border-radius: 20px;
+  border: 2px solid var(--bg); /* Spacing effect around thumb */
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FDCC17; /* Turns Gold on hover */
 }

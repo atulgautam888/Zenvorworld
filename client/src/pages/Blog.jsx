@@ -31,7 +31,7 @@ const Blog = () => {
   const blogPosts = [
     {
       id: 1,
-      slug: 'digital-marketing-trends-2024',
+      slug: 'digital-marketing-trends-2024', // Matched to App.jsx Route
       title: 'Digital Marketing Trends Dominating 2024',
       excerpt: 'Discover the game-changing strategies that are reshaping digital marketing in 2024. From AI-powered personalization to voice search optimization.',
       category: 'Digital Marketing',
@@ -44,7 +44,7 @@ const Blog = () => {
     },
     {
       id: 2,
-      slug: 'business-automation-revolution',
+      slug: 'business-automation-revolution', // Matched to App.jsx Route
       title: 'The Business Automation Revolution',
       excerpt: 'Learn how intelligent automation is transforming businesses worldwide. Cut operational costs by 40% while boosting productivity exponentially.',
       category: 'Business Automation',
@@ -189,12 +189,13 @@ const Blog = () => {
       </section>
 
       {/* FEATURED POST */}
-      {featuredPost && selectedCategory === 'All' && (
-        <section className="py-24 container mx-auto px-6">
-          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mb-12">
-            <h2 className="text-4xl md:text-5xl font-black uppercase italic tracking-tighter">Featured <span className="text-accent">Insight</span></h2>
-          </motion.div>
+      <section className="py-24 container mx-auto px-6">
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mb-12">
+          <h2 className="text-4xl md:text-5xl font-black uppercase italic tracking-tighter">Featured <span className="text-accent">Insight</span></h2>
+        </motion.div>
 
+        {/* This specifically maps the featured post slug to its route */}
+        {featuredPost && (
           <Link to={`/blog/${featuredPost.slug}`} className="group block no-underline">
             <div className="grid lg:grid-cols-2 gap-0 bg-card-bg border border-border-main rounded-[48px] overflow-hidden hover:border-accent/30 transition-all duration-500 shadow-xl">
               <div className="relative h-[400px] lg:h-full overflow-hidden">
@@ -213,13 +214,13 @@ const Blog = () => {
                 </div>
 
                 <div className="flex items-center gap-3 text-accent font-black uppercase tracking-[0.3em] text-xs">
-                  Read Case Study <FaArrowRight className="group-hover:translate-x-3 transition-transform" />
+                  Read Full Article <FaArrowRight className="group-hover:translate-x-3 transition-transform" />
                 </div>
               </div>
             </div>
           </Link>
-        </section>
-      )}
+        )}
+      </section>
 
       {/* BLOG GRID */}
       <section className="py-20 container mx-auto px-6">
@@ -232,6 +233,7 @@ const Blog = () => {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
             >
+              {/* This link automatically uses the matched slug for Business Automation or Digital Marketing */}
               <Link to={`/blog/${post.slug}`} className="group block h-full no-underline">
                 <div className="h-full flex flex-col bg-card-bg border border-border-main rounded-[32px] overflow-hidden hover:border-accent/40 transition-all duration-500 hover:translate-y-[-10px] shadow-sm">
                   <div className="relative h-64 overflow-hidden">
@@ -271,7 +273,7 @@ const Blog = () => {
               Level Up Your <br />Knowledge.
             </h2>
             <p className="text-black/70 mb-12 text-lg font-bold uppercase tracking-widest text-xs">
-              Weekly industry insights, delivered directly to your brain.
+              Weekly industry insights, delivered directly to your inbox.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
@@ -284,14 +286,10 @@ const Blog = () => {
                 Join Now
               </button>
             </div>
-            <p className="text-[9px] font-black uppercase text-black/40 mt-8 tracking-widest">
-              Zero Spam. Just high-value engineering & marketing content.
-            </p>
           </div>
         </div>
       </section>
 
-      {/* FOOTER */}
       <Footer />
     </div>
   );
