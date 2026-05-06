@@ -131,12 +131,12 @@ const Home = () => {
   ];
 
   const services = [
-    { title: 'Digital Marketing', icon: '📱', desc: 'Comprehensive digital strategies including SEO, SEM, and influencer partnerships that drive measurable global results.' },
-    { title: 'Software Development', icon: '⚙️', desc: 'Custom enterprise-grade software solutions built with cutting-edge technologies and scalable architectures.' },
-    { title: 'Web Development', icon: '💻', desc: 'Responsive, lightning-fast websites built with modern frameworks and convert international visitors into customers.' },
-    { title: 'Mobile App Dev', icon: '📲', desc: 'Feature-rich native and cross-platform mobile applications that engage users and drive business growth globally.' },
-    { title: 'E-commerce Solutions', icon: '🛒', desc: 'Complete e-commerce ecosystems with secure payment gateways and analytics dashboards for global scaling.' },
-    { title: 'Brand Strategy', icon: '🎯', desc: 'End-to-end brand development that resonates with your target audience and stands out in the international market.' }
+    { title: 'Digital Marketing', icon: '📱', desc: 'Comprehensive digital strategies including SEO, SEM, and influencer partnerships that drive measurable global results.', path: '/digital-marketing' },
+    { title: 'Software Development', icon: '⚙️', desc: 'Custom enterprise-grade software solutions built with cutting-edge technologies and scalable architectures.', path: '/services' },
+    { title: 'Web Development', icon: '💻', desc: 'Responsive, lightning-fast websites built with modern frameworks and convert international visitors into customers.', path: '/web-development' },
+    { title: 'Mobile App Dev', icon: '📲', desc: 'Feature-rich native and cross-platform mobile applications that engage users and drive business growth globally.', path: '/mobile-app-development' },
+    { title: 'E-commerce Solutions', icon: '🛒', desc: 'Complete e-commerce ecosystems with secure payment gateways and analytics dashboards for global scaling.', path: '/ecommerce-solutions' },
+    { title: 'Brand Strategy', icon: '🎯', desc: 'End-to-end brand development that resonates with your target audience and stands out in the international market.', path: '/services' }
   ];
 
   return (
@@ -181,12 +181,16 @@ const Home = () => {
       </motion.section>
 
       <div className="relative z-30 bg-bg-main transition-colors duration-500">
-        {/* 2. HERO REVEAL SECTION */}
+        {/* 2. HERO REVEAL SECTION - REDUCED FONT SIZE */}
         <section ref={heroRevealRef} className="min-h-screen flex items-center justify-center pt-24 px-6">
           <div className="container mx-auto z-10 text-center">
             <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} className="backdrop-blur-xl bg-card-bg border border-border-main p-12 md:p-24 rounded-[60px] shadow-2xl relative group">
               <span className="inline-block px-4 py-1.5 mb-8 text-[11px] font-black bg-accent text-black rounded-full uppercase tracking-[0.2em]">✨ Innovation Agency</span>
-              <h1 className="hero-title text-5xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-10 text-text-main uppercase italic">Elevate Your <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-accent to-orange-500">Digital Footprint</span> <br /> with ZenVor.</h1>
+              <h1 className="hero-title text-4xl md:text-7xl font-black tracking-tighter leading-[0.95] mb-10 text-text-main uppercase italic">
+                Elevate Your <br /> 
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-accent to-orange-500">Digital Footprint</span> <br /> 
+                with ZenVor.
+              </h1>
               <p className="opacity-60 text-lg md:text-xl max-w-4xl mx-auto font-medium mb-12">Your dedicated partner for end-to-end IT solutions. We combine innovation with unwavering support to scale your business.</p>
               <div className="flex flex-wrap justify-center gap-6">
                 <Link to="/contact" className="px-12 py-5 bg-text-main text-bg-main font-black rounded-full shadow-2xl hover:scale-105 transition-all no-underline">Let's Talk</Link>
@@ -196,19 +200,64 @@ const Home = () => {
           </div>
         </section>
 
-        {/* 3. WHO WE ARE - UPDATED GLOBAL CONTENT */}
+        {/* 3. WHO WE ARE - ENHANCED CONTENT */}
         <section className="py-32 border-t border-border-main">
           <div className="container mx-auto px-6 text-center">
-            <motion.div {...fadeInUp} className="max-w-5xl mx-auto bg-card-bg p-16 rounded-[60px] border border-border-main shadow-2xl relative overflow-hidden group">
+            <motion.div {...fadeInUp} className="max-w-6xl mx-auto bg-card-bg p-16 md:p-20 rounded-[60px] border border-border-main shadow-2xl relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-bl-[100px] group-hover:bg-accent/10 transition-colors"></div>
-              <h2 className="text-5xl font-black mb-10 uppercase text-text-main italic tracking-tighter">Who We Are</h2>
-              <p className="text-xl md:text-2xl opacity-70 leading-relaxed font-medium">
-                <span className="text-accent font-black">ZenVor Studio</span> is a premier global technology collective. We architect high-performance digital ecosystems for visionaries worldwide.
+              
+              <h2 className="text-5xl md:text-6xl font-black mb-12 uppercase text-text-main italic tracking-tighter">Who We Are</h2>
+              
+              <p className="text-xl md:text-2xl opacity-80 leading-relaxed font-medium mb-8">
+                <span className="text-accent font-black">ZenVor Studio</span> is a premier global technology collective dedicated to transforming digital visions into reality. We are a team of passionate developers, creative designers, and strategic marketers who architect high-performance digital ecosystems for visionaries worldwide.
               </p>
-              <div className="w-24 h-1.5 bg-accent mx-auto mt-10 rounded-full"></div>
-              <p className="mt-10 text-lg opacity-50 max-w-3xl mx-auto">
-                By blending cutting-edge engineering with strategic marketing, we transform ambitious startups and established enterprises into industry leaders. We don't just build software; we build the future.
+              
+              <div className="w-24 h-1.5 bg-accent mx-auto my-10 rounded-full"></div>
+              
+              <div className="grid md:grid-cols-3 gap-8 mt-12 mb-10">
+                <div className="bg-bg-main/50 p-8 rounded-3xl border border-border-main/50">
+                  <div className="text-5xl mb-4">🎯</div>
+                  <h4 className="text-lg font-black uppercase mb-3 text-text-main">Our Mission</h4>
+                  <p className="text-sm opacity-60 leading-relaxed">
+                    Empowering businesses through cutting-edge technology and innovative digital solutions that drive measurable growth and success.
+                  </p>
+                </div>
+                
+                <div className="bg-bg-main/50 p-8 rounded-3xl border border-border-main/50">
+                  <div className="text-5xl mb-4">👁️</div>
+                  <h4 className="text-lg font-black uppercase mb-3 text-text-main">Our Vision</h4>
+                  <p className="text-sm opacity-60 leading-relaxed">
+                    To be the world's most trusted digital partner, known for excellence, innovation, and transformative solutions.
+                  </p>
+                </div>
+                
+                <div className="bg-bg-main/50 p-8 rounded-3xl border border-border-main/50">
+                  <div className="text-5xl mb-4">💎</div>
+                  <h4 className="text-lg font-black uppercase mb-3 text-text-main">Our Values</h4>
+                  <p className="text-sm opacity-60 leading-relaxed">
+                    Innovation, integrity, excellence, and customer success are the pillars that guide every project we undertake.
+                  </p>
+                </div>
+              </div>
+              
+              <p className="mt-10 text-base md:text-lg opacity-60 max-w-4xl mx-auto leading-relaxed">
+                By blending cutting-edge engineering with strategic marketing, we transform ambitious startups and established enterprises into industry leaders. We don't just build software; we build sustainable competitive advantages. Our holistic approach combines technical excellence with creative brilliance, ensuring that every solution we deliver not only meets but exceeds expectations.
               </p>
+              
+              <div className="mt-12 flex flex-wrap justify-center gap-4">
+                <div className="px-6 py-3 bg-accent/10 border border-accent/30 rounded-full">
+                  <span className="text-accent font-bold text-sm">🌍 Global Reach</span>
+                </div>
+                <div className="px-6 py-3 bg-accent/10 border border-accent/30 rounded-full">
+                  <span className="text-accent font-bold text-sm">⚡ Rapid Delivery</span>
+                </div>
+                <div className="px-6 py-3 bg-accent/10 border border-accent/30 rounded-full">
+                  <span className="text-accent font-bold text-sm">🤝 24/7 Support</span>
+                </div>
+                <div className="px-6 py-3 bg-accent/10 border border-accent/30 rounded-full">
+                  <span className="text-accent font-bold text-sm">🏆 Award-Winning</span>
+                </div>
+              </div>
             </motion.div>
           </div>
         </section>
@@ -259,19 +308,66 @@ const Home = () => {
           </div>
         </section>
 
-        {/* 6. OUR CLIENTS */}
-        <section className="py-40">
-          <div className="container mx-auto px-6 text-center">
-            <motion.h2 {...fadeInUp} className="text-5xl md:text-8xl font-black uppercase text-text-main mb-24 italic tracking-tighter">Our Clients</motion.h2>
-            <div className="grid grid-cols-2 md:grid-cols-6 divide-x divide-border-main">
+        {/* 6. OUR CLIENTS - ENHANCED VERSION */}
+        <section className="py-40 relative overflow-hidden">
+          {/* Animated background gradient */}
+          <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-accent/5 animate-pulse"></div>
+          
+          <div className="container mx-auto px-6 text-center relative z-10">
+            <motion.div {...fadeInUp} className="mb-20">
+              <h2 className="text-5xl md:text-8xl font-black uppercase text-text-main mb-6 italic tracking-tighter">Our Clients</h2>
+              <p className="text-accent font-bold tracking-[0.3em] uppercase text-sm">Trusted Partnerships Worldwide</p>
+              <div className="w-32 h-1.5 bg-accent mx-auto mt-6 rounded-full shadow-[0_0_15px_#FFCC00]"></div>
+            </motion.div>
+
+            {/* Responsive Grid Layout */}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
               {clients.map((c, i) => (
-                <div key={i} className="p-10 group flex flex-col items-center">
-                  <div className="text-6xl mb-6 grayscale group-hover:grayscale-0 transition-all hover:scale-110">{c.icon}</div>
-                  <h4 className="text-[11px] font-black uppercase opacity-40 group-hover:text-accent tracking-[0.2em] mb-3">{c.name}</h4>
-                  <p className="text-[9px] opacity-30 font-bold leading-tight">{c.desc}</p>
-                </div>
+                <motion.div 
+                  key={i} 
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1, duration: 0.6 }}
+                  whileHover={{ y: -15, scale: 1.05 }}
+                  className="group relative"
+                >
+                  {/* Card Container */}
+                  <div className="bg-card-bg border-2 border-border-main rounded-[30px] p-8 md:p-10 h-full flex flex-col items-center justify-center transition-all duration-500 group-hover:border-accent group-hover:shadow-[0_0_30px_rgba(255,204,0,0.2)] relative overflow-hidden">
+                    
+                    {/* Animated background on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-accent/0 to-accent/0 group-hover:from-accent/5 group-hover:to-accent/10 transition-all duration-500 rounded-[30px]"></div>
+                    
+                    {/* Icon with animation */}
+                    <div className="relative z-10 text-7xl md:text-8xl mb-6 grayscale group-hover:grayscale-0 transition-all duration-500 transform group-hover:rotate-12 group-hover:scale-110">
+                      {c.icon}
+                    </div>
+                    
+                    {/* Client Name */}
+                    <h4 className="relative z-10 text-xs md:text-sm font-black uppercase opacity-50 group-hover:opacity-100 group-hover:text-accent tracking-[0.2em] mb-3 transition-all duration-300">
+                      {c.name}
+                    </h4>
+                    
+                    {/* Description */}
+                    <p className="relative z-10 text-[10px] md:text-xs opacity-40 group-hover:opacity-70 font-bold leading-tight transition-all duration-300">
+                      {c.desc}
+                    </p>
+
+                    {/* Decorative corner element */}
+                    <div className="absolute top-0 right-0 w-16 h-16 bg-accent/5 rounded-bl-[50px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    {/* Bottom accent line */}
+                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 group-hover:w-3/4 h-[2px] bg-accent transition-all duration-700 rounded-full"></div>
+                  </div>
+
+                  {/* Floating badge on hover */}
+                  <div className="absolute -top-3 -right-3 bg-accent text-black text-[9px] font-black px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-0 group-hover:scale-100 shadow-lg">
+                    ✓ Active
+                  </div>
+                </motion.div>
               ))}
             </div>
+
+
           </div>
         </section>
 
@@ -320,7 +416,12 @@ const Home = () => {
                   <div className="text-8xl mb-12 group-hover:rotate-12 transition-transform duration-500">{s.icon}</div>
                   <h3 className="text-3xl font-black uppercase text-text-main mb-8 italic tracking-tight">{s.title}</h3>
                   <p className="opacity-60 text-sm leading-relaxed mb-10 font-medium">{s.desc}</p>
-                  <div className="flex items-center justify-center text-accent font-black text-[10px] uppercase tracking-[0.3em] border-b-2 border-accent w-fit mx-auto pb-1 hover:text-text-main transition-colors cursor-pointer">Learn More →</div>
+                  <Link 
+                    to={s.path} 
+                    className="flex items-center justify-center text-accent font-black text-[10px] uppercase tracking-[0.3em] border-b-2 border-accent w-fit mx-auto pb-1 hover:text-text-main transition-colors cursor-pointer no-underline"
+                  >
+                    Learn More →
+                  </Link>
                 </motion.div>
               ))}
             </div>

@@ -110,13 +110,13 @@ const TEAM = [
     initials: "AS",
     color: "#414a4c",
   },
-  {
-    name: "Darsh Thakor",
-    role: "Sales Executive (USA)",
-    bio: "Spearheading sales initiatives and client acquisition across the United States.",
-    initials: "DT",
-    color: "#1A1A1A",
-  },
+  // {
+  //   name: "Darsh Thakor",
+  //   role: "Sales Executive (USA)",
+  //   bio: "Spearheading sales initiatives and client acquisition across the United States.",
+  //   initials: "DT",
+  //   color: "#1A1A1A",
+  // },
   {
     name: "Simon Rojas",
     role: "Project Manager (UK)",
