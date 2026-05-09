@@ -96,12 +96,12 @@ const Navbar = () => {
         
         <div className="max-w-[1450px] mx-auto px-6 flex items-center justify-between">
           
-          {/* Logo - h-14/h-20 with optimized filters for visibility */}
+          {/* Logo - Size increased to h-18/h-24 with optimized filters for visibility */}
           <Link to="/" className="flex items-center group no-underline z-[2001]">
             <img 
               src={logo} 
               alt="ZenVor World" 
-              className={`h-14 md:h-20 w-auto object-contain transition-all duration-500 
+              className={`h-18 md:h-24 w-auto object-contain transition-all duration-500 
                 ${theme === 'dark' 
                   ? 'brightness-0 invert drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]' 
                   : 'brightness-100'}`} 

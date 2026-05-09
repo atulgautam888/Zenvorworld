@@ -216,10 +216,10 @@ const WhyZenVor = () => {
   ];
 
   return (
-    <div ref={containerRef} className="relative w-full bg-bg-main text-text-main overflow-x-hidden min-h-screen pt-20 transition-colors duration-500">
+    <div ref={containerRef} className="relative w-full bg-bg-main text-text-main overflow-x-hidden min-h-screen pt-24 md:pt-32 transition-colors duration-500">
       
-      {/* 1. ENHANCED HERO SECTION */}
-      <section className="relative min-h-[70vh] flex items-center justify-center border-b border-border-main overflow-hidden">
+      {/* 1. HERO SECTION */}
+      <section className="relative min-h-[60vh] flex flex-col items-center justify-start border-b border-border-main overflow-hidden pt-8">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,_var(--color-accent)_0%,transparent_50%)] opacity-5" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,_var(--color-accent)_0%,transparent_50%)] opacity-5" />
 
@@ -232,20 +232,20 @@ const WhyZenVor = () => {
               Transforming Visions into Reality
             </motion.span>
             
-            <h1 className="text-6xl md:text-9xl font-black tracking-tighter leading-[0.85] uppercase italic mb-8">
+            <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-[1] uppercase italic mb-8">
               Where Innovation <br /> 
               <span className="text-accent relative">
                 Meets Excellence
               </span>
             </h1>
             
-            <p className="text-lg md:text-xl max-w-3xl mx-auto opacity-70 mb-12 leading-relaxed">
+            <p className="text-base md:text-lg max-w-2xl mx-auto opacity-70 mb-12 leading-relaxed">
               We don't just build digital products—we architect experiences that drive growth, 
               engagement, and measurable results. Your vision, our execution, unstoppable outcomes.
             </p>
 
             {/* Metrics Row */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto mt-16">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto mt-12 pb-16">
               {metrics.map((metric, i) => (
                 <motion.div
                   key={i}
@@ -287,7 +287,7 @@ const WhyZenVor = () => {
         </div>
       </section>
 
-      {/* 3. ENHANCED WHAT SETS US APART */}
+      {/* 3. WHAT SETS US APART */}
       <section className="py-16 bg-bg-main">
         <div className="container mx-auto px-6 text-center mb-12">
           <div>
@@ -309,7 +309,6 @@ const WhyZenVor = () => {
               whileHover={{ y: -10 }}
             >
               <div className="relative h-full p-8 bg-card-bg border border-border-main rounded-[32px] shadow-lg hover:border-accent transition-all duration-500 overflow-hidden">
-                {/* Background glow effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
                 <div className="relative z-10">
@@ -350,17 +349,12 @@ const WhyZenVor = () => {
         </div>
 
         <div className="container mx-auto px-6 relative">
-          {/* Connection line */}
           <div className="hidden lg:block absolute top-1/2 left-0 w-full h-[2px] bg-accent/20" />
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
             {ourApproach.map((phase, i) => (
-              <div
-                key={i}
-                className=""
-              >
+              <div key={i}>
                 <div className="relative h-full p-8 bg-bg-main border border-border-main rounded-[32px] hover:border-accent transition-all duration-500 shadow-lg group">
-                  {/* Phase number */}
                   <div className="absolute -top-4 -left-4 w-16 h-16 bg-accent text-black rounded-2xl flex items-center justify-center text-2xl font-black shadow-xl">
                     {phase.phase}
                   </div>
@@ -405,7 +399,6 @@ const WhyZenVor = () => {
         </div>
 
         <div className="container mx-auto px-6 overflow-x-auto pb-10 custom-scrollbar">
-          {/* Header Timeline */}
           <div className="flex justify-between items-center min-w-[1200px] mb-16 relative px-4">
             <div className="absolute top-1/2 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-accent/30 to-transparent -translate-y-1/2" />
             
@@ -428,7 +421,6 @@ const WhyZenVor = () => {
             ))}
           </div>
 
-          {/* Enhanced Cards Grid */}
           <div className="grid grid-cols-6 min-w-[1200px] gap-6 px-2">
             {marketingArchitecture.map((stage, idx) => (
               <div key={idx} className="space-y-4">
@@ -557,11 +549,10 @@ const WhyZenVor = () => {
         </div>
       </section>
 
-      {/* 9. ENHANCED CTA */}
+      {/* 9. CTA SECTION */}
       <section className="py-40 px-6 bg-bg-main">
         <div className="container mx-auto max-w-5xl text-center reveal">
           <div className="relative p-16 md:p-32 rounded-[60px] bg-accent text-black overflow-hidden shadow-2xl">
-            {/* Animated background pattern */}
             <div className="absolute inset-0 opacity-10">
               <div className="absolute top-0 left-0 w-64 h-64 bg-black rounded-full blur-3xl" />
               <div className="absolute bottom-0 right-0 w-96 h-96 bg-black rounded-full blur-3xl" />
