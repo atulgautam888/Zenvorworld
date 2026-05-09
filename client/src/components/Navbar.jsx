@@ -7,15 +7,20 @@ import {
   FaBars, FaTimes, FaSun, FaMoon
 } from 'react-icons/fa';
 
+// Logo Import - Ensure the filename matches your assets folder
+import logo from '../assets/ZenVorlogo.png'; 
+
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
+  // Default theme set to 'light' instead of 'dark'
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
   const [showDropdown, setShowDropdown] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    // Reduced scroll threshold for faster padding transition
+    const handleScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -83,20 +88,24 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`fixed top-0 w-full z-[1000] transition-all duration-500 font-jakarta 
+      {/* Navbar Padding reduced: py-1 (scrolled) and py-2.5 (top) */}
+      <nav className={`fixed top-0 w-full z-[2000] transition-all duration-500 font-jakarta 
         ${scrolled || mobileMenuOpen
-          ? 'bg-bg-main/95 backdrop-blur-xl py-3 shadow-lg border-b border-border-main' 
-          : 'bg-transparent py-5'}`}>
+          ? 'bg-bg-main/95 backdrop-blur-xl py-1 shadow-lg border-b border-border-main' 
+          : 'bg-transparent py-2.5'}`}>
         
         <div className="max-w-[1450px] mx-auto px-6 flex items-center justify-between">
           
-          {/* Logo */}
-          <Link to="/" className="flex flex-col items-center group no-underline z-[1001]">
-            <div className="flex items-baseline">
-              <span className="text-text-main text-2xl md:text-3xl font-black tracking-tighter">ZEN</span>
-              <span className="text-accent text-3xl md:text-4xl font-black italic tracking-tighter ml-1">V</span>
-              <span className="text-text-main text-2xl md:text-3xl font-black tracking-tighter">OR</span>
-            </div>
+          {/* Logo - h-14/h-20 with optimized filters for visibility */}
+          <Link to="/" className="flex items-center group no-underline z-[2001]">
+            <img 
+              src={logo} 
+              alt="ZenVor World" 
+              className={`h-14 md:h-20 w-auto object-contain transition-all duration-500 
+                ${theme === 'dark' 
+                  ? 'brightness-0 invert drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]' 
+                  : 'brightness-100'}`} 
+            />
           </Link>
 
           {/* Desktop Nav */}
@@ -131,7 +140,7 @@ const Navbar = () => {
                     initial={{ opacity: 0, y: 15, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-[850px] bg-card-bg border border-border-main rounded-[32px] shadow-2xl overflow-hidden flex z-[2000]"
+                    className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[850px] bg-card-bg border border-border-main rounded-[32px] shadow-2xl overflow-hidden flex z-[2000]"
                   >
                     <div className="flex-[2.5] grid grid-cols-3 gap-4 p-8 bg-white/[0.01]">
                       {mainOfferings.map((item, i) => (
@@ -162,14 +171,14 @@ const Navbar = () => {
               {theme === 'light' ? <FaMoon /> : <FaSun />}
             </button>
 
-            <Link to="/contact" className="hidden md:block bg-accent text-black px-6 py-2.5 rounded-xl font-black text-[10px] uppercase tracking-widest hover:scale-105 transition-all no-underline shadow-lg shadow-accent/20">
+            <Link to="/contact" className="hidden md:block bg-accent text-black px-6 py-2 rounded-xl font-black text-[10px] uppercase tracking-widest hover:scale-105 transition-all no-underline shadow-lg shadow-accent/20">
               Get Quote
             </Link>
 
             {/* Mobile Toggle */}
             <button 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-accent text-black z-[1001]"
+              className="lg:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-accent text-black z-[2001]"
             >
               {mobileMenuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
             </button>
@@ -177,7 +186,7 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* MOBILE MENU OVERLAY - FULLY FUNCTIONAL */}
+      {/* MOBILE MENU OVERLAY */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -185,12 +194,16 @@ const Navbar = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-[999] bg-bg-main flex flex-col lg:hidden"
+            className="fixed inset-0 z-[1500] bg-bg-main flex flex-col lg:hidden"
           >
-            <div className="flex-1 overflow-y-auto pt-24 pb-10 px-6 custom-scrollbar">
+            <div className="flex-1 overflow-y-auto pt-20 pb-10 px-6 custom-scrollbar">
               <div className="flex flex-col space-y-10">
                 
-                {/* 1. Primary Links */}
+                {/* Mobile Logo in menu - consistent dark mode visibility */}
+                <div className="mb-4">
+                  <img src={logo} alt="ZenVor" className={`h-14 w-auto ${theme === 'dark' ? 'brightness-0 invert drop-shadow-[0_0_5px_rgba(255,255,255,0.2)]' : ''}`} />
+                </div>
+
                 <div className="space-y-4">
                   <p className="text-accent text-[10px] font-black uppercase tracking-[0.3em] mb-6">Explore ZenVor</p>
                   <div className="grid grid-cols-1 gap-y-4">
@@ -205,7 +218,6 @@ const Navbar = () => {
 
                 <div className="h-px bg-border-main w-full opacity-50"></div>
 
-                {/* 2. Offerings with Icons */}
                 <div className="space-y-6">
                   <p className="text-accent text-[10px] font-black uppercase tracking-[0.3em]">Core Offerings</p>
                   <div className="grid gap-4">
@@ -222,7 +234,6 @@ const Navbar = () => {
                   </div>
                 </div>
 
-                {/* 3. Quick List */}
                 <div className="space-y-6">
                   <p className="text-accent text-[10px] font-black uppercase tracking-[0.3em]">Additional Solutions</p>
                   <div className="grid grid-cols-2 gap-3">
@@ -234,9 +245,8 @@ const Navbar = () => {
                   </div>
                 </div>
 
-                {/* 4. Action Buttons */}
                 <div className="pt-6 space-y-4">
-                  <Link to="/contact" className="w-full bg-accent text-black py-5 rounded-2xl font-black text-center uppercase tracking-widest no-underline shadow-xl shadow-accent/20 block text-sm">
+                  <Link to="/contact" className="w-full bg-accent text-black py-4 rounded-2xl font-black text-center uppercase tracking-widest no-underline shadow-xl shadow-accent/20 block text-sm">
                     Start a Project
                   </Link>
                   <div className="text-center">

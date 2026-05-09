@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom"; // Added for routing
 import Footer from '../components/Footer'; // Global Footer Imported
 
 // ─── CATEGORIES ──────────────────────────────────────────────────────────────
@@ -17,11 +18,11 @@ const PROJECTS = [
     id: 1, cat: "web", size: "hero",
     title: "ShopEase — Next-Gen Retail Platform",
     subtitle: "Web Development · E-Commerce",
-    desc: "Full-stack re-architecture for India's fastest-growing retail brand. We rebuilt their entire frontend in Next.js, slashing load times by 68% and pushing conversions up 180% within 60 days of launch.",
+    desc: "Full-stack re-architecture for a global retail brand. We rebuilt their entire frontend in Next.js, slashing load times by 68% and pushing conversions up 180% within 60 days of launch.",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
     tags: ["Next.js", "Node.js", "MongoDB", "Tailwind"],
     stats: [{ n: "+180%", l: "Conversions" }, { n: "2.1s", l: "Load Time" }, { n: "₹4.2Cr", l: "Revenue/mo" }],
-    year: "2024", client: "ShopEase India",
+    year: "2024", client: "ShopEase Global",
   },
   {
     id: 2, cat: "app", size: "standard",
@@ -31,23 +32,23 @@ const PROJECTS = [
     image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
     tags: ["React Native", "Firebase", "AI/ML"],
     stats: [{ n: "50K+", l: "Downloads" }, { n: "4.8★", l: "App Store" }],
-    year: "2024", client: "MedTrack Pvt Ltd",
+    year: "2024", client: "MedTrack International",
   },
   {
     id: 3, cat: "marketing", size: "standard",
     title: "LuxeWear — Performance Ads",
     subtitle: "Digital Marketing · Fashion",
-    desc: "Google + Meta ad campaigns that generated ₹2Cr in 90 days for a luxury fashion startup with zero prior digital presence.",
+    desc: "Google + Meta ad campaigns that generated $2M in 90 days for a luxury fashion startup with zero prior digital presence.",
     image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80",
     tags: ["Google Ads", "Meta Ads", "Analytics"],
-    stats: [{ n: "6.4x", l: "ROAS" }, { n: "₹2Cr", l: "90-Day Revenue" }],
+    stats: [{ n: "6.4x", l: "ROAS" }, { n: "$2M", l: "90-Day Revenue" }],
     year: "2024", client: "LuxeWear Fashion",
   },
   {
     id: 4, cat: "uiux", size: "wide",
     title: "FinPulse — Enterprise Dashboard",
     subtitle: "UI/UX Design · FinTech",
-    desc: "End-to-end design system and dashboard for a B2B fintech platform serving 200+ enterprise clients. Reduced user onboarding time by 40% through strategic UX improvements and a clean scalable design language.",
+    desc: "End-to-end design system and dashboard for a B2B fintech platform serving 200+ enterprise clients. Reduced onboarding time by 40% through strategic UX improvements.",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1000&q=80",
     tags: ["Figma", "Design System", "Research", "Prototyping"],
     stats: [{ n: "40%", l: "Faster Onboarding" }, { n: "200+", l: "Enterprise Clients" }, { n: "3x", l: "Task Completion" }],
@@ -77,10 +78,10 @@ const PROJECTS = [
     id: 7, cat: "ecommerce", size: "hero",
     title: "EduPath — Learning Management System",
     subtitle: "E-Commerce · EdTech",
-    desc: "A full-featured LMS platform with video streaming, live classes, quizzes, payment gateway, and instructor dashboards. Scaled from 0 to 15,000 active students in 6 months post-launch.",
+    desc: "A full-featured LMS platform with video streaming, live classes, quizzes, and instructor dashboards. Scaled to 15,000 active students in 6 months.",
     image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&q=80",
     tags: ["Next.js", "Stripe", "AWS", "WebRTC"],
-    stats: [{ n: "15K+", l: "Active Students" }, { n: "200+", l: "Courses" }, { n: "₹1.8Cr", l: "Revenue" }],
+    stats: [{ n: "15K+", l: "Active Students" }, { n: "200+", l: "Courses" }, { n: "$1.2M", l: "Revenue" }],
     year: "2024", client: "EduPath Learning",
   },
   {
@@ -100,14 +101,14 @@ const PROJECTS = [
     desc: "Project management SaaS for construction firms with Gantt charts, vendor management, and real-time reporting.",
     image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80",
     tags: ["React", "PostgreSQL", "SaaS"],
-    stats: [{ n: "80+", l: "Companies" }, { n: "₹3Cr", l: "ARR" }],
+    stats: [{ n: "80+", l: "Companies" }, { n: "$4M", l: "ARR" }],
     year: "2023", client: "BuildRight Solutions",
   },
   {
     id: 10, cat: "uiux", size: "wide",
     title: "ZenPay — Fintech Super App UI",
     subtitle: "UI/UX Design · Fintech",
-    desc: "Complete UX overhaul for a fintech super-app covering payments, investments, insurance, and lending. 60+ screen Figma system with motion guidelines, accessibility audit, and full developer handoff.",
+    desc: "Complete UX overhaul for a fintech super-app covering payments, investments, and insurance. 60+ screen Figma system.",
     image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1000&q=80",
     tags: ["Figma", "Motion Design", "Accessibility", "Design System"],
     stats: [{ n: "60+", l: "Screens Designed" }, { n: "92%", l: "User Satisfaction" }, { n: "2M+", l: "Active Users" }],
@@ -121,7 +122,7 @@ const PROJECTS = [
     image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80",
     tags: ["Instagram", "Reels", "Influencer"],
     stats: [{ n: "180K", l: "Followers" }, { n: "8.2%", l: "Avg Engagement" }],
-    year: "2024", client: "FitCore India",
+    year: "2024", client: "FitCore Global",
   },
   {
     id: 12, cat: "app", size: "standard",
@@ -137,7 +138,7 @@ const PROJECTS = [
     id: 13, cat: "ecommerce", size: "standard",
     title: "OrganicCart — D2C Platform",
     subtitle: "E-Commerce · FMCG",
-    desc: "D2C e-commerce store for an organic food brand with subscription boxes, loyalty programs, and WhatsApp checkout.",
+    desc: "D2C e-commerce store for an organic food brand with subscription boxes and loyalty programs.",
     image: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&q=80",
     tags: ["Shopify+", "WhatsApp API", "Loyalty"],
     stats: [{ n: "22K+", l: "Orders/Month" }, { n: "68%", l: "Repeat Customers" }],
@@ -147,17 +148,17 @@ const PROJECTS = [
     id: 14, cat: "web", size: "standard",
     title: "PropVista — Real Estate Portal",
     subtitle: "Web Development · Real Estate",
-    desc: "Full-featured property listing portal with 3D virtual tours, EMI calculators, and AI-powered property recommendations.",
+    desc: "Full-featured property listing portal with 3D virtual tours and AI-powered property recommendations.",
     image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80",
     tags: ["React", "3D Tours", "AI"],
-    stats: [{ n: "10K+", l: "Listings" }, { n: "₹120Cr", l: "Deals Closed" }],
+    stats: [{ n: "10K+", l: "Listings" }, { n: "$150M", l: "Deals Closed" }],
     year: "2024", client: "PropVista Realty",
   },
   {
     id: 15, cat: "marketing", size: "standard",
     title: "SolarNow — Lead Generation",
     subtitle: "Digital Marketing · CleanTech",
-    desc: "B2C lead generation campaign for a solar panel company that reduced cost-per-lead by 60% while tripling lead volume.",
+    desc: "B2C lead generation campaign for a solar panel company that reduced cost-per-lead by 60% while tripling volume.",
     image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80",
     tags: ["Google Ads", "Landing Pages", "CRO"],
     stats: [{ n: "3x", l: "Lead Volume" }, { n: "60%", l: "Lower CPL" }],
@@ -167,7 +168,7 @@ const PROJECTS = [
     id: 16, cat: "web", size: "standard",
     title: "LegalEase — Law Firm Portal",
     subtitle: "Web Development · Legal",
-    desc: "Appointment booking, case tracking, and secure document portal for a 50-lawyer law firm. GDPR compliant and fully encrypted.",
+    desc: "Appointment booking, case tracking, and secure document portal for a law firm. GDPR compliant.",
     image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80",
     tags: ["Next.js", "Auth", "Encryption"],
     stats: [{ n: "50+", l: "Lawyers Onboarded" }, { n: "99.9%", l: "Uptime" }],
@@ -192,16 +193,24 @@ const INDUSTRIES = [
 
 const TESTIMONIALS = [
   {
-    quote: "ZenVor transformed our digital presence completely. Traffic tripled, conversions doubled, and the app has been running flawlessly for 14 months.",
-    name: "Rohit Kapoor", role: "CEO, ShopEase India", init: "RK",
+    quote: "ZenVor transformed our digital presence completely. Traffic tripled, conversions doubled, and the performance has been flawless for 14 months.",
+    name: "John Kelly", role: "CEO (USA)", init: "JK",
   },
   {
     quote: "Our ROAS went from 1.8x to 6.4x in just 90 days. They don't just run ads — they build real growth engines tailored to your business.",
-    name: "Priya Sharma", role: "Founder, LuxeWear Fashion", init: "PS",
+    name: "Luke Hickman", role: "UK Business Lead", init: "LH",
   },
   {
-    quote: "The EduPath LMS scaled to 15,000 students without a single major outage. Best tech partner we've worked with in 8 years.",
-    name: "Amit Verma", role: "Co-Founder, EduPath", init: "AV",
+    quote: "The platform scaled to 15,000 active users without a single major outage. Best tech partner we've worked with in years.",
+    name: "Mario Stefanov", role: "Product Director (UK)", init: "MS",
+  },
+  {
+    quote: "Precision, speed, and absolute reliability. They handled our complex migration perfectly.",
+    name: "Rebecca Hill", role: "UK Operations", init: "RH",
+  },
+  {
+    quote: "Exceeded all our expectations regarding lead generation and brand visibility in the European market.",
+    name: "Stephan Griffith", role: "Business Owner (France)", init: "SG",
   },
 ];
 
@@ -210,7 +219,7 @@ function HeroCard({ project }) {
   const [hovered, setHovered] = useState(false);
   return (
     <div
-      className="relative rounded-[32px] overflow-hidden cursor-pointer border border-border-main"
+      className="relative rounded-[32px] overflow-hidden border border-border-main"
       style={{
         transition: "transform .4s ease, box-shadow .4s ease",
         transform: hovered ? "translateY(-4px)" : "translateY(0)",
@@ -227,7 +236,6 @@ function HeroCard({ project }) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent" />
 
-        {/* Badges */}
         <div className="absolute top-5 left-5 flex gap-2">
           <span className="bg-[#FDCC17] text-black text-[10px] font-black px-3 py-1.5 rounded-full uppercase tracking-wider">
             Featured
@@ -237,7 +245,6 @@ function HeroCard({ project }) {
           </span>
         </div>
 
-        {/* Content */}
         <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10">
           <div className="text-[#FDCC17] text-xs font-bold uppercase tracking-widest mb-3">{project.subtitle}</div>
           <h3 style={{ fontFamily: "'Playfair Display',serif" }}
@@ -275,7 +282,7 @@ function WideCard({ project }) {
   const [hovered, setHovered] = useState(false);
   return (
     <div
-      className="rounded-[32px] overflow-hidden border border-border-main bg-card-bg cursor-pointer grid md:grid-cols-2"
+      className="rounded-[32px] overflow-hidden border border-border-main bg-card-bg grid md:grid-cols-2"
       style={{
         transition: "transform .4s ease, box-shadow .4s ease",
         transform: hovered ? "translateY(-4px)" : "translateY(0)",
@@ -321,8 +328,8 @@ function WideCard({ project }) {
             </span>
           ))}
         </div>
-
-        <span className="text-xs font-bold text-[#ecb203] uppercase tracking-wider">View Case Study →</span>
+        {/* View Case Study Commented Out */}
+        {/* <span className="text-xs font-bold text-[#ecb203] uppercase tracking-wider">View Case Study →</span> */}
       </div>
     </div>
   );
@@ -333,7 +340,7 @@ function StandardCard({ project }) {
   const [hovered, setHovered] = useState(false);
   return (
     <div
-      className="rounded-[24px] overflow-hidden border border-border-main bg-card-bg cursor-pointer flex flex-col"
+      className="rounded-[24px] overflow-hidden border border-border-main bg-card-bg flex flex-col"
       style={{
         transition: "transform .35s ease, box-shadow .35s ease",
         transform: hovered ? "translateY(-6px)" : "translateY(0)",
@@ -354,14 +361,7 @@ function StandardCard({ project }) {
         <span className="absolute top-3 right-3 bg-black/40 backdrop-blur-sm text-white/80 text-[9px] font-semibold px-2 py-1 rounded-full">
           {project.year}
         </span>
-        {/* Hover overlay */}
-        <div className="absolute inset-0 flex items-center justify-center transition-all duration-300"
-          style={{ background: hovered ? "rgba(253,204,23,0.12)" : "transparent" }}>
-          <div className="bg-white text-black text-[10px] font-bold px-4 py-2 rounded-full uppercase tracking-wider transition-all duration-300"
-            style={{ opacity: hovered ? 1 : 0, transform: hovered ? "translateY(0)" : "translateY(8px)" }}>
-            View Project →
-          </div>
-        </div>
+        {/* View Project Overlay Removed */}
       </div>
 
       <div className="p-5 flex flex-col flex-1">
@@ -412,7 +412,6 @@ export default function Portfolio() {
     <div className="min-h-screen bg-bg-main text-text-main transition-colors duration-500"
       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
 
-      {/* ── HERO ── */}
       <section className="relative overflow-hidden pt-32 pb-16 px-[5%]">
         <div className="absolute -right-24 -top-24 w-[500px] h-[500px] rounded-full pointer-events-none opacity-20"
           style={{ background: "radial-gradient(circle,rgba(253,204,23,0.3) 0%,transparent 70%)" }} />
@@ -420,7 +419,7 @@ export default function Portfolio() {
         <div className="relative z-10 max-w-4xl">
           <div className="inline-flex items-center gap-2 bg-[rgba(253,204,23,0.1)] border border-[rgba(253,204,23,0.3)] rounded-full px-4 py-1.5 mb-6 backdrop-blur-sm">
             <span className="w-1.5 h-1.5 rounded-full bg-[#FDCC17] animate-ping inline-block" />
-            <span className="text-[#ecb203] text-[11px] font-bold uppercase tracking-widest">Our Work</span>
+            <span className="text-[#ecb203] text-[11px] font-bold uppercase tracking-widest">Global Work</span>
           </div>
 
           <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: "clamp(3rem,5.5vw,5rem)" }}
@@ -433,7 +432,6 @@ export default function Portfolio() {
           </p>
         </div>
 
-        {/* Stats strip */}
         <div className="relative z-10 flex flex-wrap gap-x-10 gap-y-5 mt-12 pt-10 border-t border-border-main">
           {RESULTS.map((r) => (
             <div key={r.label} className="flex items-center gap-3">
@@ -453,7 +451,6 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* ── STICKY FILTER ── */}
       <div className="sticky top-[72px] z-40 bg-bg-main/85 backdrop-blur-xl border-y border-border-main px-[5%] py-3.5">
         <div className="flex gap-2 flex-wrap">
           {CATEGORIES.map((cat) => (
@@ -481,7 +478,6 @@ export default function Portfolio() {
         </div>
       </div>
 
-      {/* ── PROJECTS ── */}
       <section className="px-[5%] py-14 space-y-12">
         {heroCards.map((p) => <HeroCard key={p.id} project={p} />)}
         {wideCards.map((p) => <WideCard key={p.id} project={p} />)}
@@ -507,7 +503,6 @@ export default function Portfolio() {
         )}
       </section>
 
-      {/* ── INDUSTRIES ── */}
       <section className="px-[5%] py-24 bg-card-bg/20 border-t border-border-main">
         <div className="text-center mb-10">
           <div className="text-[#ecb203] text-[11px] font-bold uppercase tracking-widest mb-3">Industries We Serve</div>
@@ -526,16 +521,15 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* ── TESTIMONIALS ── */}
       <section className="px-[5%] py-24">
         <div className="text-center mb-12">
-          <div className="text-[#ecb203] text-[11px] font-bold uppercase tracking-widest mb-3">Client Love</div>
+          <div className="text-[#ecb203] text-[11px] font-bold uppercase tracking-widest mb-3">Global Client Love</div>
           <h2 style={{ fontFamily: "'Playfair Display',serif" }}
             className="font-black text-4xl text-text-main tracking-tight">
             Words From Our <span className="text-[#FDCC17]">Clients</span>
           </h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
           {TESTIMONIALS.map((t) => (
             <div key={t.name}
               className="bg-card-bg border border-border-main rounded-[24px] p-8 hover:-translate-y-1 transition-transform duration-300">
@@ -555,7 +549,6 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* ── CTA ── */}
       <section className="px-[5%] pb-32">
         <div className="rounded-[40px] p-12 md:p-24 text-center relative overflow-hidden border border-border-main"
           style={{ background: "linear-gradient(135deg, var(--color-bg-main) 0%, var(--color-card-bg) 100%)" }}>
@@ -574,20 +567,20 @@ export default function Portfolio() {
               Free 30-minute strategy session. No commitment. Just honest advice on how to grow your brand digitally.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <a href="/reach-us"
+              {/* Linked to /contact route for Reach Us page */}
+              <Link to="/contact"
                 className="bg-[#FDCC17] text-black font-bold text-sm px-10 py-5 rounded-full uppercase tracking-wider inline-block hover:-translate-y-0.5 hover:shadow-[0_12px_36px_rgba(253,204,23,0.45)] transition-all duration-200 no-underline">
                 Start Your Project →
-              </a>
-              <a href="/services"
+              </Link>
+              <Link to="/services"
                 className="border-2 border-border-main text-text-main font-semibold text-sm px-10 py-5 rounded-full uppercase tracking-wider hover:border-[#FDCC17] hover:text-[#FDCC17] transition-all duration-200 no-underline">
                 Explore Services
-              </a>
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Global Footer Added */}
       <Footer />
     </div>
   );

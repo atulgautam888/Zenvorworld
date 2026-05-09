@@ -1,5 +1,9 @@
 import { useState, useEffect, useRef } from "react";
+// Is line ko add kiya/change kiya:
+import { Link } from "react-router-dom";
 import Footer from '../components/Footer'; // Global Footer Imported
+// Is line ko add kiya/change kiya:
+
 
 // ─── COUNTER HOOK ─────────────────────────────────────────────────────────────
 function useCounter(end, duration = 2000, start = false) {
@@ -110,13 +114,13 @@ const TEAM = [
     initials: "AS",
     color: "#414a4c",
   },
-  // {
-  //   name: "Darsh Thakor",
-  //   role: "Sales Executive (USA)",
-  //   bio: "Spearheading sales initiatives and client acquisition across the United States.",
-  //   initials: "DT",
-  //   color: "#1A1A1A",
-  // },
+  {
+    name: "Matt Warner",
+    role: "Sales Executive (USA)",
+    bio: "Spearheading sales initiatives and client acquisition across the United States.",
+    initials: "MW",
+    color: "#1A1A1A",
+  },
   {
     name: "Simon Rojas",
     role: "Project Manager (UK)",
@@ -284,7 +288,7 @@ export default function AboutUs() {
 
           <div className="flex flex-wrap gap-4">
             <a
-              href="/reach-us"
+              href="/contact"
               className="bg-[#FDCC17] text-black font-bold text-sm px-8 py-4 rounded-full uppercase tracking-wider hover:-translate-y-0.5 hover:shadow-[0_12px_36px_rgba(253,204,23,0.45)] transition-all duration-200 inline-block no-underline"
             >
               Start a Project →
@@ -685,7 +689,7 @@ export default function AboutUs() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="/reach-us"
+                href="/contact"
                 className="bg-[#FDCC17] text-black font-bold text-sm px-10 py-4 rounded-full uppercase tracking-widest inline-block hover:-translate-y-0.5 hover:shadow-[0_12px_36px_rgba(253,204,23,0.45)] transition-all duration-200 no-underline"
               >
                 Get Free Consultation →

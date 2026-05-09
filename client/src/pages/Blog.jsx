@@ -40,7 +40,8 @@ const Blog = () => {
       readTime: '8 min read',
       image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
       featured: true,
-      tags: ['SEO', 'Social Media', 'AI Marketing']
+      tags: ['SEO', 'Social Media', 'AI Marketing'],
+      active: true // Active Link
     },
     {
       id: 2,
@@ -53,7 +54,8 @@ const Blog = () => {
       readTime: '10 min read',
       image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80',
       featured: true,
-      tags: ['Automation', 'RPA']
+      tags: ['Automation', 'RPA'],
+      active: true // Active Link
     },
     {
       id: 3,
@@ -66,7 +68,8 @@ const Blog = () => {
       readTime: '12 min read',
       image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80',
       featured: false,
-      tags: ['AI', 'Web Dev']
+      tags: ['AI', 'Web Dev'],
+      active: false
     },
     {
       id: 4,
@@ -79,7 +82,8 @@ const Blog = () => {
       readTime: '7 min read',
       image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80',
       featured: false,
-      tags: ['Security', 'Data']
+      tags: ['Security', 'Data'],
+      active: false
     },
     {
       id: 5,
@@ -92,7 +96,8 @@ const Blog = () => {
       readTime: '15 min read',
       image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80',
       featured: false,
-      tags: ['Cloud', 'AWS']
+      tags: ['Cloud', 'AWS'],
+      active: false
     },
     {
       id: 6,
@@ -105,7 +110,8 @@ const Blog = () => {
       readTime: '9 min read',
       image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80',
       featured: false,
-      tags: ['CRO', 'UX']
+      tags: ['CRO', 'UX'],
+      active: false
     },
   ];
 
@@ -113,7 +119,7 @@ const Blog = () => {
 
   const filteredPosts = blogPosts.filter(post => {
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
+                          post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === 'All' || post.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
@@ -194,9 +200,12 @@ const Blog = () => {
           <h2 className="text-4xl md:text-5xl font-black uppercase italic tracking-tighter">Featured <span className="text-accent">Insight</span></h2>
         </motion.div>
 
-        {/* This specifically maps the featured post slug to its route */}
         {featuredPost && (
-          <Link to={`/blog/${featuredPost.slug}`} className="group block no-underline">
+          <Link 
+            to={featuredPost.active ? `/blog/${featuredPost.slug}` : "#"} 
+            className={`group block no-underline ${!featuredPost.active ? 'cursor-default' : ''}`}
+            onClick={(e) => !featuredPost.active && e.preventDefault()}
+          >
             <div className="grid lg:grid-cols-2 gap-0 bg-card-bg border border-border-main rounded-[48px] overflow-hidden hover:border-accent/30 transition-all duration-500 shadow-xl">
               <div className="relative h-[400px] lg:h-full overflow-hidden">
                 <img src={featuredPost.image} alt={featuredPost.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
@@ -213,9 +222,11 @@ const Blog = () => {
                   <span className="flex items-center gap-2"><FaCalendar className="text-accent" /> {featuredPost.date}</span>
                 </div>
 
-                <div className="flex items-center gap-3 text-accent font-black uppercase tracking-[0.3em] text-xs">
-                  Read Full Article <FaArrowRight className="group-hover:translate-x-3 transition-transform" />
-                </div>
+                {featuredPost.active && (
+                  <div className="flex items-center gap-3 text-accent font-black uppercase tracking-[0.3em] text-xs">
+                    Read Full Article <FaArrowRight className="group-hover:translate-x-3 transition-transform" />
+                  </div>
+                )}
               </div>
             </div>
           </Link>
@@ -233,8 +244,11 @@ const Blog = () => {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
             >
-              {/* This link automatically uses the matched slug for Business Automation or Digital Marketing */}
-              <Link to={`/blog/${post.slug}`} className="group block h-full no-underline">
+              <Link 
+                to={post.active ? `/blog/${post.slug}` : "#"} 
+                className={`group block h-full no-underline ${!post.active ? 'cursor-default' : ''}`}
+                onClick={(e) => !post.active && e.preventDefault()}
+              >
                 <div className="h-full flex flex-col bg-card-bg border border-border-main rounded-[32px] overflow-hidden hover:border-accent/40 transition-all duration-500 hover:translate-y-[-10px] shadow-sm">
                   <div className="relative h-64 overflow-hidden">
                     <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
@@ -253,7 +267,7 @@ const Blog = () => {
                       <div className="flex items-center gap-4 text-[9px] font-black uppercase tracking-widest opacity-40">
                         <span className="flex items-center gap-1.5"><FaClock /> {post.readTime}</span>
                       </div>
-                      <FaArrowRight className="text-accent group-hover:translate-x-2 transition-transform" />
+                      {post.active && <FaArrowRight className="text-accent group-hover:translate-x-2 transition-transform" />}
                     </div>
                   </div>
                 </div>
@@ -276,15 +290,10 @@ const Blog = () => {
               Weekly industry insights, delivered directly to your inbox.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
-              <input
-                type="email"
-                placeholder="EMAIL ADDRESS"
-                className="flex-1 px-8 py-5 bg-white border-none rounded-2xl text-black placeholder-black/40 font-black text-[10px] tracking-widest focus:ring-2 focus:ring-black outline-none shadow-inner"
-              />
-              <button className="px-12 py-5 bg-black text-white rounded-2xl font-black uppercase text-[10px] tracking-[0.3em] hover:scale-105 transition-all shadow-2xl">
+            <div className="flex justify-center">
+              <Link to="/contact" className="px-16 py-6 bg-black text-white rounded-2xl font-black uppercase text-[12px] tracking-[0.3em] hover:scale-105 transition-all shadow-2xl no-underline inline-block">
                 Join Now
-              </button>
+              </Link>
             </div>
           </div>
         </div>
